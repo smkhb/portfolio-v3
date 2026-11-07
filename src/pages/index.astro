@@ -15,13 +15,22 @@ const emDestaque = (destaques.length ? destaques : todos).slice(0, 4);
 
 <Base title="Samuel Bernardo — bio">
   <section class="pt-14 pb-10">
-    <img
-      src="/profile.jpeg"
-      alt="Foto de perfil de Samuel Bernardo"
-      width="112"
-      height="112"
-      class="sobe size-24 rounded-full object-cover ring-1 ring-line sm:size-28"
-    />
+    <button
+      type="button"
+      class="moeda-espaco sobe cursor-pointer rounded-full"
+      aria-label="Foto de perfil de Samuel Bernardo"
+    >
+      <span class="moeda">
+        <img
+          src="/profile.jpeg"
+          alt="Foto de perfil de Samuel Bernardo"
+          width="112"
+          height="112"
+          class="face object-cover ring-1 ring-line"
+        />
+        <span class="face verso" aria-hidden="true"></span>
+      </span>
+    </button>
     <h1 class="sobe sobe-2 mt-7 text-[clamp(1.9rem,6vw,3rem)] leading-tight font-bold tracking-tight">
       Samuel Bernardo
     </h1>
@@ -78,3 +87,13 @@ const emDestaque = (destaques.length ? destaques : todos).slice(0, 4);
     </p>
   </section>
 </Base>
+
+<script>
+  const botao = document.querySelector('.moeda-espaco');
+  const moeda = botao?.querySelector('.moeda');
+  botao?.addEventListener('click', () => {
+    moeda?.classList.remove('girando');
+    moeda?.classList.add('girando');
+  });
+  moeda?.addEventListener('animationend', () => moeda.classList.remove('girando'));
+</script>
