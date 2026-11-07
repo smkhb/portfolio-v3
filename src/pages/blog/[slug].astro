@@ -19,7 +19,7 @@ const { Content } = await render(post);
         {dataLonga(post.data.pubDate)}
         {post.data.tags.length > 0 && ` — ${post.data.tags.join(', ')}`}
       </p>
-      <h1 class="mt-3 text-[clamp(1.9rem,5vw,2.6rem)] font-extrabold leading-tight tracking-tight">
+      <h1 class="mt-3 text-[clamp(1.9rem,5vw,2.6rem)] font-bold leading-tight tracking-tight">
         {post.data.title}
       </h1>
     </header>

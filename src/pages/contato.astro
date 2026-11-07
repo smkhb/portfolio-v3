@@ -5,7 +5,7 @@ import { SITE } from '../config/site';
 
 <Base title="Contato — Samuel Bernardo" description="Como falar comigo: e-mail e redes.">
   <header class="pt-16 pb-10">
-    <h1 class="text-[clamp(2.2rem,6vw,3.2rem)] font-extrabold leading-tight tracking-tight">Contato</h1>
+    <h1 class="text-[clamp(2.2rem,6vw,3.2rem)] font-bold leading-tight tracking-tight">Contato</h1>
     <p class="mt-4 max-w-[58ch] leading-relaxed text-soft">
       Tem um projeto em mente, uma dúvida ou só quer dizer oi? Me escreva — respondo e-mails com prazer.
     </p>
@@ -38,7 +38,7 @@ import { SITE } from '../config/site';
         SITE.sociais.map((s) => (
           <li>
             <a href={s.url} class="flex items-baseline justify-between py-3 group">
-              <span class="font-semibold tracking-tight group-hover:text-accent">{s.rotulo}</span>
+              <span class="font-bold tracking-tight group-hover:text-accent">{s.rotulo}</span>
               <span class="font-mono text-xs text-soft">{s.url.replace(/^https?:\/\//, '')}</span>
             </a>
           </li>
