@@ -1,0 +1,34 @@
+---
+import Base from '../layouts/Base.astro';
+
+const stack = [
+  { nome: 'Astro', uso: 'Sites rápidos e estáticos' },
+  { nome: 'TypeScript', uso: 'Tipagem de ponta a ponta' },
+  { nome: 'Tailwind CSS', uso: 'Estilos sem sair do HTML' },
+  { nome: 'pnpm', uso: 'Pacotes e scripts' },
+  { nome: 'VS Code', uso: 'Editor do dia a dia' },
+  { nome: 'GitHub', uso: 'Código e versionamento' },
+  { nome: 'Cloudflare', uso: 'Hospedagem e DNS' },
+  { nome: 'Figma', uso: 'Design e protótipos' },
+];
+---
+
+<Base title="Stack — Samuel Bernardo" description="As ferramentas que eu uso no dia a dia.">
+  <header class="pt-16 pb-10">
+    <h1 class="text-[clamp(2rem,5.5vw,2.8rem)] font-bold tracking-tight">Stack</h1>
+    <p class="mt-4 max-w-[58ch] text-soft">
+      As ferramentas que eu uso todos os dias para construir coisas na web.
+    </p>
+  </header>
+
+  <ul class="border-t border-dashed border-line pb-4">
+    {
+      stack.map((ferramenta) => (
+        <li class="flex items-baseline justify-between gap-6 border-b border-dashed border-line py-5">
+          <span class="font-bold tracking-tight">{ferramenta.nome}</span>
+          <span class="text-right text-sm text-soft">{ferramenta.uso}</span>
+        </li>
+      ))
+    }
+  </ul>
+</Base>

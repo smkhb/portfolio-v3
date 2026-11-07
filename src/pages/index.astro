@@ -64,11 +64,11 @@ const emDestaque = (destaques.length ? destaques : todos).slice(0, 4);
       {
         posts.map((post) => (
           <li class="py-4">
-            <a href={`/blog/${post.id}`} class="block!">
-              <span class="font-mono text-xs text-soft">{dataLonga(post.data.pubDate)}</span>
-              <span class="mt-1 block font-bold tracking-tight">{post.data.title}</span>
-              <span class="mt-1 block text-sm text-soft">{post.data.description}</span>
+            <span class="font-mono text-xs text-soft">{dataLonga(post.data.pubDate)}</span>
+            <a href={`/blog/${post.id}`} class="mt-1 block w-fit font-bold tracking-tight">
+              {post.data.title}
             </a>
+            <span class="mt-1 block text-sm text-soft">{post.data.description}</span>
           </li>
         ))
       }

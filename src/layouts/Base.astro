@@ -15,6 +15,7 @@ const nav = [
   { href: '/projetos', label: 'Projetos' },
   { href: '/servicos', label: 'Serviços' },
   { href: '/blog', label: 'Blog' },
+  { href: '/stack', label: 'Stack' },
   { href: '/contato', label: 'Contato' },
 ];
 const atual = (href: string) =>
@@ -34,7 +35,7 @@ const atual = (href: string) =>
     <script is:inline>
       document.documentElement.classList.add('js');
       const tema = localStorage.getItem('tema');
-      const escuro = tema ? tema === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+      const escuro = tema ? tema === 'dark' : true;
       document.documentElement.dataset.theme = escuro ? 'dark' : 'light';
     </script>
   </head>
@@ -48,17 +49,14 @@ const atual = (href: string) =>
 
     <header class="mx-auto w-full max-w-2xl px-5 pt-6">
       <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
-        <a href="/" class="text-base font-bold tracking-tight">{SITE.nome}</a>
+        <a href="/" class="marca text-base font-bold tracking-tight">{SITE.nome}</a>
         <nav aria-label="Principal" class="flex items-baseline gap-4 text-[0.9rem]">
           {
             nav.map((item) => (
               <a
                 href={item.href}
                 aria-current={atual(item.href) ? 'page' : undefined}
-                class:list={[
-                  'transition-colors hover:text-accent',
-                  atual(item.href) ? 'font-bold underline underline-offset-4' : 'text-soft',
-                ]}
+                class:list={[atual(item.href) ? 'font-bold' : 'text-soft']}
               >
                 {item.label}
               </a>
@@ -90,19 +88,28 @@ const atual = (href: string) =>
       <div class="border-t border-line pt-5 font-mono text-xs text-soft">
         <p>© {new Date().getFullYear()} {SITE.nome}</p>
         <p class="mt-1">
-          Feito com <a class="underline underline-offset-2 hover:text-accent" href="https://astro.build">Astro</a>
+          Feito com <a class="underline-offset-2" href="https://astro.build">Astro</a>
         </p>
       </div>
     </footer>
 
     <style is:global>
-      [data-theme='dark'] .icone-sol {
+      [data-theme='light'] .icone-sol {
         display: none;
       }
-      html:not([data-theme='dark']) .icone-lua {
+      html:not([data-theme='light']) .icone-lua {
         display: none;
       }
     </style>
+
+    <script is:inline>
+      const cores = ['#24d05a', '#eb4888', '#10a2f5', '#e9bc3f'];
+      const aleatoria = () => cores[Math.floor(Math.random() * cores.length)];
+      const pintar = () =>
+        document.querySelectorAll('a').forEach((a) => (a.style.textDecorationColor = aleatoria()));
+      pintar();
+      document.querySelectorAll('a, button').forEach((e) => e.addEventListener('mouseover', pintar));
+    </script>
 
     <script>
       const botao = document.getElementById('tema');

@@ -2,6 +2,8 @@
 
 Portfólio pessoal de Samuel Bernardo. Astro + TypeScript + Tailwind, publicado como arquivos estáticos no Cloudflare Pages.
 
+Tema escuro (`#141414`) é o padrão; o botão de lua/sol no topo alterna para o claro. Os links ficam na cor do texto com sublinhado colorido, sorteado entre verde, rosa, azul e amarelo a cada carregamento e a cada hover (mesmo comportamento do blahg do Cassidy, que serviu de inspiração).
+
 ## Comandos
 
 | Comando | Ação |
@@ -18,9 +20,10 @@ Portfólio pessoal de Samuel Bernardo. Astro + TypeScript + Tailwind, publicado 
 | Nome, e-mail, redes sociais | `src/config/site.ts` |
 | Textos da home (bio) | `src/pages/index.astro` |
 | Textos dos serviços | `src/pages/servicos.astro` |
+| Ferramentas da página Stack | `src/pages/stack.astro` |
 | Projetos | `src/content/projetos/*.md` |
 | Posts do blog | `src/content/posts/*.md` |
-| Cores e fontes | `src/styles/global.css` (variáveis em `:root` e `[data-theme='dark']`) |
+| Cores e fontes | `src/styles/global.css` (variáveis em `:root` e `[data-theme='light']`) |
 
 ### Adicionar um projeto
 

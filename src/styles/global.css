@@ -17,23 +17,23 @@
 
 :root {
   --h: 235;
+  --c-paper: #141414;
+  --c-ink: #ececec;
+  --c-soft: #a8a8a8;
+  --c-line: #2c2c2c;
+  --c-accent: oklch(80% 0.12 var(--h));
+  --c-mark: oklch(30% 0.08 var(--h));
+  color-scheme: dark;
+}
+
+[data-theme='light'] {
   --c-paper: #edf1f6;
-  --c-ink: #1b2129;
+  --c-ink: #141414;
   --c-soft: #4e5a6b;
   --c-line: #c6cfdc;
   --c-accent: oklch(50% 0.16 var(--h));
   --c-mark: oklch(92% 0.055 var(--h));
   color-scheme: light;
-}
-
-[data-theme='dark'] {
-  --c-paper: #10141b;
-  --c-ink: #e8ecf2;
-  --c-soft: #97a3b4;
-  --c-line: #26303e;
-  --c-accent: oklch(80% 0.12 var(--h));
-  --c-mark: oklch(30% 0.08 var(--h));
-  color-scheme: dark;
 }
 
 @layer base {
@@ -54,28 +54,30 @@
   color: var(--c-ink);
 }
 
-/* Efeito de link: troca de cor no hover e resposta ao clicar, estilo blahg. */
-main :where(a) {
-  color: var(--c-accent);
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
-  transition:
-    background-color 0.16s ease,
-    color 0.16s ease,
-    text-underline-offset 0.16s ease;
-}
-main :where(a):hover {
-  background: var(--c-mark);
-  color: var(--c-ink);
-  text-underline-offset: 5px;
-}
-main :where(a):active {
-  background: var(--c-ink);
-  color: var(--c-paper);
+header a,
+main a,
+footer a {
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-color: var(--ul, var(--c-soft));
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  transition: text-decoration-color 0.15s ease;
 }
 
-/* Revelação ao rolar: blocos sobem quando entram na tela (só com JS ativo). */
+header .marca {
+  text-decoration-line: none;
+}
+
+header nav a {
+  text-decoration-line: none;
+}
+
+header nav a:hover,
+header nav a[aria-current='page'] {
+  text-decoration-line: underline;
+}
+
 html.js .revela {
   opacity: 0;
   transform: translateY(18px);
@@ -96,7 +98,6 @@ html.js .revela.visivel {
   }
 }
 
-/* Aparição no carregamento da página. */
 @media (prefers-reduced-motion: no-preference) {
   .sobe {
     animation: sobe 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both;
@@ -145,11 +146,6 @@ html.js .revela.visivel {
 }
 .conteudo :where(li + li) {
   margin-top: 0.4em;
-}
-.conteudo :where(a) {
-  color: var(--c-accent);
-  text-decoration: underline;
-  text-underline-offset: 3px;
 }
 .conteudo :where(code) {
   background: var(--c-mark);

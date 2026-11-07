@@ -15,7 +15,7 @@ import { SITE } from '../config/site';
     <p class="font-mono text-xs text-soft">e-mail</p>
     <div class="mt-2 flex flex-wrap items-center gap-3">
       <a
-        class="break-all text-xl font-bold tracking-tight text-accent underline underline-offset-[5px] hover:opacity-80"
+        class="break-all text-xl font-bold tracking-tight underline underline-offset-[5px]"
         href={`mailto:${SITE.email}`}
       >
         {SITE.email}
@@ -38,7 +38,7 @@ import { SITE } from '../config/site';
         SITE.sociais.map((s) => (
           <li>
             <a href={s.url} class="flex items-baseline justify-between py-3 group">
-              <span class="font-bold tracking-tight group-hover:text-accent">{s.rotulo}</span>
+              <span class="font-bold tracking-tight">{s.rotulo}</span>
               <span class="font-mono text-xs text-soft">{s.url.replace(/^https?:\/\//, '')}</span>
             </a>
           </li>
