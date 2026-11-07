@@ -1,0 +1,144 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/archivo';
+@import '@fontsource/ibm-plex-mono/400.css';
+@import '@fontsource/ibm-plex-mono/500.css';
+
+@theme inline {
+  --color-paper: var(--c-paper);
+  --color-ink: var(--c-ink);
+  --color-soft: var(--c-soft);
+  --color-line: var(--c-line);
+  --color-accent: var(--c-accent);
+  --color-mark: var(--c-mark);
+  --font-sans: 'Archivo Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', monospace;
+}
+
+:root {
+  --c-paper: #edf1f6;
+  --c-ink: #1b2129;
+  --c-soft: #4e5a6b;
+  --c-line: #c6cfdc;
+  --c-accent: #1e6b3f;
+  --c-mark: #ddf5b6;
+  color-scheme: light;
+}
+
+[data-theme='dark'] {
+  --c-paper: #10141b;
+  --c-ink: #e8ecf2;
+  --c-soft: #97a3b4;
+  --c-line: #26303e;
+  --c-accent: #8fd6a9;
+  --c-mark: #2c4222;
+  color-scheme: dark;
+}
+
+@layer base {
+  body {
+    @apply bg-paper font-sans text-ink antialiased;
+  }
+
+  :where(a, button, input, textarea, summary):focus-visible {
+    outline: 2px solid var(--c-accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+::selection {
+  background: var(--c-mark);
+  color: var(--c-ink);
+}
+
+.grade {
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--c-line) 55%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--c-line) 55%, transparent) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sobe {
+    animation: sobe 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  .sobe-2 {
+    animation-delay: 0.07s;
+  }
+  .sobe-3 {
+    animation-delay: 0.14s;
+  }
+}
+
+@keyframes sobe {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.conteudo :where(h2) {
+  font-size: 1.375rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 2.2em 0 0.6em;
+}
+.conteudo :where(h3) {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 1.8em 0 0.5em;
+}
+.conteudo :where(p, ul, ol) {
+  margin: 1em 0;
+  line-height: 1.75;
+}
+.conteudo :where(ul) {
+  list-style: disc;
+  padding-left: 1.25em;
+}
+.conteudo :where(ol) {
+  list-style: decimal;
+  padding-left: 1.25em;
+}
+.conteudo :where(li + li) {
+  margin-top: 0.4em;
+}
+.conteudo :where(a) {
+  color: var(--c-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.conteudo :where(code) {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: var(--c-mark);
+  padding: 0.15em 0.35em;
+  border-radius: 0.25em;
+}
+.conteudo :where(pre) {
+  background: var(--c-ink);
+  color: var(--c-paper);
+  padding: 1rem 1.25rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+}
+.conteudo :where(pre code) {
+  background: none;
+  color: inherit;
+  padding: 0;
+}
+.conteudo :where(blockquote) {
+  border-left: 3px solid var(--c-line);
+  padding-left: 1rem;
+  color: var(--c-soft);
+  font-style: italic;
+}
+.conteudo :where(hr) {
+  border: 0;
+  border-top: 1px solid var(--c-line);
+  margin: 2.5em 0;
+}

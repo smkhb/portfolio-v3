@@ -1,0 +1,52 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../config/site';
+
+const servicos = [
+  {
+    titulo: 'Sites e landing pages',
+    descricao:
+      'Do layout ao deploy: páginas rápidas, estáticas e fáceis de manter. Boa primeira pergunta: quem vai editar esse site depois?',
+  },
+  {
+    titulo: 'Apps e sistemas web',
+    descricao:
+      'Aplicações com Astro, TypeScript e a ferramenta certa para o problema — sem excesso no stack.',
+  },
+  {
+    titulo: 'Manutenção e consultoria',
+    descricao:
+      'Correções, melhorias e revisão técnica em sites e projetos que já existem e precisam de cuidado contínuo.',
+  },
+];
+---
+
+<Base title="Serviços — Samuel Bernardo" description="Como eu posso ajudar: sites, apps web, manutenção e consultoria.">
+  <header class="pt-16 pb-10">
+    <h1 class="text-[clamp(2.2rem,6vw,3.2rem)] font-extrabold leading-tight tracking-tight">Serviços</h1>
+    <p class="mt-4 max-w-[58ch] leading-relaxed text-soft">
+      Tipos de trabalho que eu costumo aceitar. Se o seu caso não se encaixa em nenhum,
+      manda mensagem assim mesmo: a gente conversa.
+    </p>
+  </header>
+
+  <ul class="border-t border-line">
+    {
+      servicos.map((s) => (
+        <li class="border-b border-line py-7">
+          <h2 class="text-xl font-bold tracking-tight">{s.titulo}</h2>
+          <p class="mt-2 leading-relaxed text-soft">{s.descricao}</p>
+        </li>
+      ))
+    }
+  </ul>
+
+  <section class="mt-10 rounded-lg border border-line p-6">
+    <h2 class="font-bold tracking-tight">Como começar</h2>
+    <p class="mt-2 leading-relaxed text-soft">
+      Me escreva no e-mail
+      <a class="text-accent underline underline-offset-[3px] hover:opacity-80" href={`mailto:${SITE.email}`}>{SITE.email}</a>
+      com uma descrição do que você precisa. Eu respondo com perguntas, um prazo e um valor.
+    </p>
+  </section>
+</Base>

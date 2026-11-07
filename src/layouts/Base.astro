@@ -1,0 +1,115 @@
+---
+import '../styles/global.css';
+import { SITE } from '../config/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = SITE.titulo, description = SITE.descricao } = Astro.props;
+
+const caminho = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const nav = [
+  { href: '/', label: 'Bio' },
+  { href: '/projetos', label: 'Projetos' },
+  { href: '/servicos', label: 'Serviços' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/contato', label: 'Contato' },
+];
+const atual = (href: string) =>
+  caminho === href || (href !== '/' && caminho.startsWith(href + '/'));
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <script is:inline>
+      const tema = localStorage.getItem('tema');
+      const escuro = tema ? tema === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.dataset.theme = escuro ? 'dark' : 'light';
+    </script>
+  </head>
+  <body class="flex min-h-screen flex-col">
+    <a
+      href="#conteudo"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-10 focus:rounded-md focus:bg-mark focus:px-3 focus:py-2 focus:font-medium"
+    >
+      Ir para o conteúdo
+    </a>
+
+    <header class="mx-auto w-full max-w-2xl px-5 pt-6">
+      <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
+        <a href="/" class="text-base font-semibold tracking-tight">{SITE.nome}</a>
+        <nav aria-label="Principal" class="flex items-baseline gap-4 text-[0.9rem]">
+          {
+            nav.map((item) => (
+              <a
+                href={item.href}
+                aria-current={atual(item.href) ? 'page' : undefined}
+                class:list={[
+                  'transition-colors hover:text-accent',
+                  atual(item.href) ? 'font-semibold underline underline-offset-4' : 'text-soft',
+                ]}
+              >
+                {item.label}
+              </a>
+            ))
+          }
+          <button
+            id="tema"
+            type="button"
+            aria-label="Alternar tema claro e escuro"
+            class="cursor-pointer text-soft transition-colors hover:text-accent"
+          >
+            <svg class="icone-sol size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4 1.4-1.4"></path>
+            </svg>
+            <svg class="icone-lua size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path>
+            </svg>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main id="conteudo" class="mx-auto w-full max-w-2xl flex-1 px-5">
+      <slot />
+    </main>
+
+    <footer class="mx-auto w-full max-w-2xl px-5 pb-10">
+      <div class="border-t border-line pt-5 font-mono text-xs text-soft">
+        <p>© {new Date().getFullYear()} {SITE.nome}</p>
+        <p class="mt-1">
+          Feito com <a class="underline underline-offset-2 hover:text-accent" href="https://astro.build">Astro</a>
+        </p>
+      </div>
+    </footer>
+
+    <style is:global>
+      [data-theme='dark'] .icone-sol {
+        display: none;
+      }
+      html:not([data-theme='dark']) .icone-lua {
+        display: none;
+      }
+    </style>
+
+    <script>
+      const botao = document.getElementById('tema');
+      botao?.addEventListener('click', () => {
+        const escuro = document.documentElement.dataset.theme !== 'dark';
+        document.documentElement.dataset.theme = escuro ? 'dark' : 'light';
+        localStorage.setItem('tema', escuro ? 'dark' : 'light');
+      });
+    </script>
+  </body>
+</html>

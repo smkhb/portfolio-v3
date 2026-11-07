@@ -1,0 +1,64 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import { dataLonga } from '../lib/datas';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+---
+
+<Base title="Samuel Bernardo — bio">
+  <section class="relative">
+    <div class="grade absolute inset-0 [mask-image:linear-gradient(to_bottom,black_40%,transparent)]" aria-hidden="true"></div>
+    <div class="relative pt-16 pb-14">
+      <h1 class="sobe text-[clamp(2.9rem,9vw,5rem)] leading-[1.02] font-extrabold tracking-tight">
+        Samuel<br />
+        <span class="rounded-sm bg-mark px-2 [box-decoration-break:clone]">Bernardo</span>
+      </h1>
+      <p class="sobe sobe-2 mt-7 max-w-[58ch] text-xl leading-relaxed text-soft">
+        Desenvolvedor. Construo coisas simples que funcionam, da primeira linha de código ao deploy.
+      </p>
+    </div>
+  </section>
+
+  <section class="mt-4 space-y-5 text-[1.05rem] leading-relaxed">
+    <div class="sobe sobe-3">
+      <p>
+        Prazer, eu sou o Samuel. Trabalho com a web e gosto de resolver problemas com a menor
+        quantidade de movimentos possível: código direto, manutenção fácil, sem firula.
+      </p>
+      <p class="mt-4">
+        Este site é a minha casa na internet: nele eu guardo
+        <a class="text-accent underline underline-offset-[3px] hover:opacity-80" href="/projetos">o que já construí</a>,
+        <a class="text-accent underline underline-offset-[3px] hover:opacity-80" href="/servicos">como posso ajudar</a> e
+        <a class="text-accent underline underline-offset-[3px] hover:opacity-80" href="/blog">o que ando escrevendo</a>.
+      </p>
+      <p class="mt-4">
+        Fora do código: [escreva aqui um interesse seu — música, café, corrida, o que for].
+      </p>
+    </div>
+  </section>
+
+  <section class="mt-16">
+    <h2 class="text-lg font-bold tracking-tight">Últimos posts</h2>
+    <ul class="mt-5 divide-y divide-line border-y border-line">
+      {
+        posts.map((post) => (
+          <li class="py-4">
+            <a href={`/blog/${post.id}`} class="group block">
+              <span class="font-mono text-xs text-soft">{dataLonga(post.data.pubDate)}</span>
+              <span class="mt-1 block font-semibold tracking-tight group-hover:text-accent">
+                {post.data.title}
+              </span>
+              <span class="mt-1 block text-sm text-soft">{post.data.description}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="mt-4 text-sm">
+      <a class="text-accent underline underline-offset-[3px] hover:opacity-80" href="/blog">Ver todos os posts</a>
+    </p>
+  </section>
+</Base>
