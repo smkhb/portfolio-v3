@@ -14,16 +14,16 @@ const { Content } = await render(post);
 
 <Base title={`${post.data.title} — Samuel Bernardo`} description={post.data.description}>
   <article class="pt-16 pb-10">
-    <header class="pb-8">
-      <p class="font-mono text-xs text-soft">
+    <header class="sobe pb-8">
+      <p class="sobe sobe-2 font-mono text-xs text-soft">
         {dataLonga(post.data.pubDate)}
         {post.data.tags.length > 0 && ` — ${post.data.tags.join(', ')}`}
       </p>
-      <h1 class="mt-3 text-[clamp(1.9rem,5vw,2.6rem)] font-bold leading-tight tracking-tight">
+      <h1 class="sobe sobe-2 mt-3 text-[clamp(1.9rem,5vw,2.6rem)] font-bold leading-tight tracking-tight">
         {post.data.title}
       </h1>
     </header>
-    <div class="conteudo max-w-[66ch]">
+    <div class="sobe sobe-3 conteudo max-w-[66ch]">
       <Content />
     </div>
   </article>

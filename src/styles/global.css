@@ -101,12 +101,13 @@ html.js .revela.visivel {
 @media (prefers-reduced-motion: no-preference) {
   .sobe {
     animation: sobe 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation-delay: var(--delay, 0s);
   }
   .sobe-2 {
-    animation-delay: 0.07s;
+    --delay: 0.07s;
   }
   .sobe-3 {
-    animation-delay: 0.14s;
+    --delay: 0.14s;
   }
 }
 

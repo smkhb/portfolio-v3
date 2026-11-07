@@ -14,17 +14,20 @@ const stack = [
 ---
 
 <Base title="Stack — Samuel Bernardo" description="As ferramentas que eu uso no dia a dia.">
-  <header class="pt-16 pb-10">
+  <header class="sobe pt-16 pb-10">
     <h1 class="text-[clamp(2rem,5.5vw,2.8rem)] font-bold tracking-tight">Stack</h1>
-    <p class="mt-4 max-w-[58ch] text-soft">
+    <p class="sobe sobe-2 mt-4 max-w-[58ch] text-soft">
       As ferramentas que eu uso todos os dias para construir coisas na web.
     </p>
   </header>
 
   <ul class="border-t border-dashed border-line pb-4">
     {
-      stack.map((ferramenta) => (
-        <li class="flex items-baseline justify-between gap-6 border-b border-dashed border-line py-5">
+      stack.map((ferramenta, i) => (
+        <li
+          class="revela flex items-baseline justify-between gap-6 border-b border-dashed border-line py-5"
+          style={`--delay: ${Math.min(i * 0.06, 0.3)}s`}
+        >
           <span class="font-bold tracking-tight">{ferramenta.nome}</span>
           <span class="text-right text-sm text-soft">{ferramenta.uso}</span>
         </li>
