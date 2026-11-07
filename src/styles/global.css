@@ -100,14 +100,14 @@ header .marca {
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  transition: transform 0.7s cubic-bezier(0.3, 0.7, 0.3, 1);
+  transition: transform 1.2s cubic-bezier(0.3, 0.7, 0.3, 1);
 }
 .moeda-espaco:hover .moeda {
   transform: rotateY(360deg);
-  transition-duration: 0.9s;
+  transition-duration: 1.6s;
 }
 .moeda.girando {
-  animation: girar-moeda 0.9s cubic-bezier(0.3, 0.7, 0.3, 1);
+  animation: girar-moeda 1.6s cubic-bezier(0.3, 0.7, 0.3, 1);
 }
 @keyframes girar-moeda {
   to {
