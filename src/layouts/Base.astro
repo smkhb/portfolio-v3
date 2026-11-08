@@ -7,23 +7,23 @@ interface Props {
   description?: string;
 }
 
-const { title = SITE.titulo, description = SITE.descricao } = Astro.props;
+const { title = SITE.title, description = SITE.description } = Astro.props;
 
-const caminho = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
 const nav = [
   { href: '/', label: 'Bio' },
-  { href: '/projetos', label: 'Projetos' },
-  { href: '/servicos', label: 'Serviços' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/services', label: 'Services' },
   { href: '/blog', label: 'Blog' },
   { href: '/stack', label: 'Stack' },
-  { href: '/contato', label: 'Contato' },
+  { href: '/contact', label: 'Contact' },
 ];
-const atual = (href: string) =>
-  caminho === href || (href !== '/' && caminho.startsWith(href + '/'));
+const isCurrent = (href: string) =>
+  path === href || (href !== '/' && path.startsWith(href + '/'));
 ---
 
 <!doctype html>
-<html lang="pt-BR">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -31,7 +31,6 @@ const atual = (href: string) =>
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <script is:inline>
       document.documentElement.classList.add('js');
       document.documentElement.dataset.theme = 'dark';
@@ -39,27 +38,27 @@ const atual = (href: string) =>
   </head>
   <body class="flex min-h-screen flex-col">
     <a
-      href="#conteudo"
+      href="#content"
       class="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-10 focus:rounded-md focus:bg-ink focus:px-3 focus:py-2 focus:text-paper focus:font-bold"
     >
-      Ir para o conteúdo
+      Skip to content
     </a>
 
     <header class="mx-auto w-full max-w-2xl px-5 pt-6">
       <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
-        <a href="/" class="marca text-base font-bold tracking-tight" aria-label="Samuel Bernardo, Software Developer">
-          <span class="trilho">
-            <span>{SITE.nome}</span>
-            <span class="cargo" aria-hidden="true">Software Developer</span>
+        <a href="/" class="brand text-base font-bold tracking-tight" aria-label="Samuel Bernardo, Software Developer">
+          <span class="track">
+            <span>{SITE.name}</span>
+            <span class="role" aria-hidden="true">Software Developer</span>
           </span>
         </a>
-        <nav aria-label="Principal" class="flex items-baseline gap-4 text-[0.9rem]">
+        <nav aria-label="Main" class="flex items-baseline gap-4 text-[0.9rem]">
           {
             nav.map((item) => (
               <a
                 href={item.href}
-                aria-current={atual(item.href) ? 'page' : undefined}
-                class:list={[atual(item.href) ? 'font-bold' : 'text-soft']}
+                aria-current={isCurrent(item.href) ? 'page' : undefined}
+                class:list={[isCurrent(item.href) ? 'font-bold' : 'text-soft']}
               >
                 {item.label}
               </a>
@@ -69,36 +68,35 @@ const atual = (href: string) =>
       </div>
     </header>
 
-    <main id="conteudo" class="mx-auto w-full max-w-2xl flex-1 px-5">
+    <main id="content" class="mx-auto w-full max-w-2xl flex-1 px-5">
       <slot />
     </main>
 
     <footer class="mx-auto w-full max-w-2xl px-5 pb-10">
       <div class="border-t border-line pt-5 font-mono text-xs text-soft">
-        <p>© {new Date().getFullYear()} {SITE.nome}</p>
+        <p>© {new Date().getFullYear()} {SITE.name}</p>
         <p class="mt-1">
-          Feito com <a class="underline-offset-2" href="https://astro.build">Astro</a>
-          {' '}e <a class="underline-offset-2" href="https://claude.com">Claude</a>
+          Made with <a class="underline-offset-2" href="https://astro.build">Astro</a>
         </p>
       </div>
     </footer>
 
     <script is:inline>
-      const cores = ['#24d05a', '#eb4888', '#10a2f5', '#e9bc3f'];
-      const aleatoria = () => cores[Math.floor(Math.random() * cores.length)];
-      const pintar = () =>
-        document.querySelectorAll('a').forEach((a) => (a.style.textDecorationColor = aleatoria()));
-      pintar();
-      document.querySelectorAll('a, button').forEach((e) => e.addEventListener('mouseover', pintar));
+      const colors = ['#24d05a', '#eb4888', '#10a2f5', '#e9bc3f'];
+      const random = () => colors[Math.floor(Math.random() * colors.length)];
+      const paint = () =>
+        document.querySelectorAll('a').forEach((a) => (a.style.textDecorationColor = random()));
+      paint();
+      document.querySelectorAll('a, button').forEach((e) => e.addEventListener('mouseover', paint));
     </script>
 
     <script>
-      const observador = new IntersectionObserver(
-        (entradas) => {
-          for (const entrada of entradas) {
-            if (!entrada.isIntersecting) continue;
-            entrada.target.classList.add('visivel');
-            observador.unobserve(entrada.target);
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
           }
         },
         {
@@ -106,7 +104,7 @@ const atual = (href: string) =>
           rootMargin: '0px 0px -40px 0px',
         },
       );
-      document.querySelectorAll('.revela').forEach((el) => observador.observe(el));
+      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
     </script>
   </body>
 </html>

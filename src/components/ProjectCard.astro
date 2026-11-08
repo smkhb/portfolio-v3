@@ -2,21 +2,21 @@
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
-  projeto: CollectionEntry<'projetos'>;
+  project: CollectionEntry<'projects'>;
   index: number;
   tag?: 'h2' | 'h3';
 }
 
-const { projeto, index, tag = 'h3' } = Astro.props;
-const { title, description, url, repo, year, tags } = projeto.data;
+const { project, index, tag = 'h3' } = Astro.props;
+const { title, description, url, repo, year, tags } = project.data;
 
-const matizes = [235, 190, 330, 25, 265, 155];
-const h = matizes[index % matizes.length];
+const hues = [235, 190, 330, 25, 265, 155];
+const h = hues[index % hues.length];
 const Tag = tag;
 ---
 
 <li
-  class="revela bloco"
+  class="reveal card"
   style={`--h: ${h}; --delay: ${(index % 3) * 0.08}s`}
 >
   <div class="flex items-baseline justify-between gap-4">
@@ -38,7 +38,7 @@ const Tag = tag;
     {
       repo && (
         <a href={repo} class="ml-auto">
-          código
+          code
         </a>
       )
     }
@@ -46,7 +46,7 @@ const Tag = tag;
 </li>
 
 <style>
-  .bloco {
+  .card {
     border: 1px solid var(--c-line);
     border-radius: 0.75rem;
     padding: 1.25rem 1.5rem;
@@ -55,7 +55,7 @@ const Tag = tag;
       transform 0.2s ease,
       box-shadow 0.2s ease;
   }
-  .bloco:hover {
+  .card:hover {
     border-color: oklch(60% 0.15 var(--h));
     transform: translateY(-2px);
     box-shadow: 0 6px 18px oklch(20% 0.05 var(--h) / 0.12);
@@ -65,10 +65,10 @@ const Tag = tag;
   }
   @media (prefers-reduced-motion: no-preference) {
     .dot {
-      animation: matiz 8s linear infinite;
+      animation: hue 8s linear infinite;
     }
   }
-  @keyframes matiz {
+  @keyframes hue {
     to {
       filter: hue-rotate(360deg);
     }

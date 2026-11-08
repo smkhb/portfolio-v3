@@ -1,80 +1,80 @@
 # portfolio-v3
 
-Portfólio pessoal de Samuel Bernardo. Astro + TypeScript + Tailwind, publicado como arquivos estáticos no Cloudflare Pages.
+Samuel Bernardo's personal portfolio. Astro + TypeScript + Tailwind, published as static files on Cloudflare Pages.
 
-Tema escuro (`#141414`) fixo. Os links ficam na cor do texto com sublinhado colorido, sorteado entre verde, rosa, azul e amarelo a cada carregamento e a cada hover (mesmo comportamento do blahg do Cassidy, que serviu de inspiração). A foto de perfil gira como uma moeda em 3D no hover e no clique.
+Fixed dark theme (`#141414`). Links keep the text color with a colored underline, randomly picked from green, pink, blue and yellow on each load and on each hover (same behavior as Cassidy's blahg, which served as inspiration). The profile picture spins like a 3D coin on hover and click.
 
-## Comandos
+## Commands
 
-| Comando | Ação |
+| Command | Action |
 | --- | --- |
-| `pnpm install` | Instalar dependências |
-| `pnpm dev` | Servidor de desenvolvimento em `localhost:4321` |
-| `pnpm build` | Build de produção em `./dist/` |
-| `pnpm preview` | Servir o build localmente |
+| `pnpm install` | Install dependencies |
+| `pnpm dev` | Dev server at `localhost:4321` |
+| `pnpm build` | Production build to `./dist/` |
+| `pnpm preview` | Serve the build locally |
 
-## Onde editar o quê
+## What to edit where
 
-| O que | Onde |
+| What | Where |
 | --- | --- |
-| Nome, e-mail, redes sociais | `src/config/site.ts` |
-| Textos da home (bio) | `src/pages/index.astro` |
-| Textos dos serviços | `src/pages/servicos.astro` |
-| Ferramentas da página Stack | `src/pages/stack.astro` |
-| Projetos | `src/content/projetos/*.md` |
-| Posts do blog | `src/content/posts/*.md` |
-| Cores e fontes | `src/styles/global.css` (variáveis em `:root` e `[data-theme='light']`) |
+| Name, email, social links | `src/config/site.ts` |
+| Home text (bio) | `src/pages/index.astro` |
+| Services text | `src/pages/services.astro` |
+| Tools on the Stack page | `src/pages/stack.astro` |
+| Projects | `src/content/projects/*.md` |
+| Blog posts | `src/content/posts/*.md` |
+| Colors and fonts | `src/styles/global.css` (variables in `:root`) |
 
-### Adicionar um projeto
+### Add a project
 
-Crie um arquivo em `src/content/projetos/`:
+Create a file in `src/content/projects/`:
 
 ```markdown
 ---
-title: "Nome do projeto"
-description: "Uma frase sobre o que é."
-url: "https://endereco-do-projeto"   # opcional
-repo: "https://github.com/voce/repo" # opcional
+title: "Project name"
+description: "One sentence about what it is."
+url: "https://project-address"       # optional
+repo: "https://github.com/you/repo"  # optional
 year: 2026
 tags: ["web"]
 featured: false
 ---
 
-Texto livre sobre o projeto (aparece se você quiser usar depois).
+Free text about the project.
 ```
 
-### Publicar um post
+### Publish a post
 
-Crie um arquivo em `src/content/posts/` com `title`, `description`, `pubDate` e `tags` no cabeçalho. O nome do arquivo vira o endereço: `meu-post.md` → `/blog/meu-post`. Use `draft: true` para rascunhos.
+Create a file in `src/content/posts/` with `title`, `description`, `pubDate` and `tags` in the header. The file name becomes the URL: `my-post.md` -> `/blog/my-post`. Use `draft: true` for drafts.
 
-## Deploy no Cloudflare Pages (recomendado)
+## Deploy on Cloudflare Pages (recommended)
 
-1. Faça push deste repositório para o GitHub.
-2. No painel do Cloudflare: **Workers & Pages → Create → Pages → Connect to Git**, e selecione o repositório.
-3. Na configuração de build:
+1. Push this repository to GitHub.
+2. In the Cloudflare dashboard: **Workers & Pages -> Create -> Pages -> Connect to Git**, and select the repository.
+3. In the build settings:
    - Framework preset: **Astro**
    - Build command: `pnpm build`
    - Build output directory: `dist`
-4. Em **Environment variables**, adicione `NODE_VERSION` com o valor `22` (ou superior).
-5. Deploy. Depois disso, todo `git push` na branch principal publica automaticamente.
+4. Under **Environment variables**, add `NODE_VERSION` with the value `22` (or higher).
+5. Deploy. After that, every `git push` to the main branch publishes automatically.
 
-Para usar seu domínio próprio: **Pages → seu projeto → Custom domains** e siga o passo a passo do painel (o DNS já está no Cloudflare, então a verificação é imediata).
+To use your own domain: **Pages -> your project -> Custom domains** and follow the dashboard steps.
 
-### Alternativas
+### Alternatives
 
-- **GitHub Pages**: adicione a integration `@astrojs/github-actions` ou um workflow que rode `pnpm build` e publique `dist/` — instrução em https://docs.astro.build/en/guides/deploy/github/
-- **Netlify**: conecte o repositório; preset Astro detecta `pnpm build` e `dist` sozinho.
-- **Coolify**: crie um app apontando para o repositório, build command `pnpm build`, pasta estática `dist`.
+- **GitHub Pages**: add the `@astrojs/github-actions` integration or a workflow that runs `pnpm build` and publishes `dist/` — see https://docs.astro.build/en/guides/deploy/github/
+- **Netlify**: connect the repository; the Astro preset detects `pnpm build` and `dist` on its own.
+- **Coolify**: create an app pointing at the repository, build command `pnpm build`, static folder `dist`.
 
-## Estrutura
+## Structure
 
 ```
 src/
-  config/site.ts        identidade e links
-  content/posts/        posts do blog (Markdown)
-  content/projetos/     projetos (Markdown)
-  layouts/Base.astro    cabeçalho, rodapé, tema claro/escuro
-  lib/datas.ts          formatação de datas em pt-BR
-  pages/                uma página por seção
-  styles/global.css     tokens de design (cores, fontes, animação)
+  config/site.ts        identity and links
+  content/posts/        blog posts (Markdown)
+  content/projects/     projects (Markdown)
+  layouts/Base.astro    header, footer, scripts
+  lib/dates.ts          date formatting (en-US)
+  pages/                one page per section
+  styles/global.css     design tokens (colors, fonts, animation)
 ```

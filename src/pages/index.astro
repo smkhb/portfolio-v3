@@ -2,78 +2,78 @@
 import Base from '../layouts/Base.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import { getCollection } from 'astro:content';
-import { dataLonga } from '../lib/datas';
+import { longDate } from '../lib/dates';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 
-const todos = (await getCollection('projetos')).sort((a, b) => b.data.year - a.data.year);
-const destaques = todos.filter((p) => p.data.featured);
-const emDestaque = (destaques.length ? destaques : todos).slice(0, 4);
+const all = (await getCollection('projects')).sort((a, b) => b.data.year - a.data.year);
+const featured = all.filter((p) => p.data.featured);
+const showcase = (featured.length ? featured : all).slice(0, 4);
 ---
 
 <Base title="Samuel Bernardo — bio">
   <section class="pt-14 pb-10">
     <button
       type="button"
-      class="moeda-espaco sobe cursor-pointer rounded-full"
-      aria-label="Foto de perfil de Samuel Bernardo"
+      class="coin-wrap rise cursor-pointer rounded-full"
+      aria-label="Samuel Bernardo profile picture"
     >
-      <span class="moeda">
+      <span class="coin">
         <img
           src="/profile.jpeg"
-          alt="Foto de perfil de Samuel Bernardo"
+          alt="Samuel Bernardo profile picture"
           width="112"
           height="112"
           class="face object-cover ring-1 ring-line"
         />
-        <span class="face verso" aria-hidden="true"></span>
+        <span class="face back" aria-hidden="true"></span>
       </span>
     </button>
-    <h1 class="sobe sobe-2 mt-7 text-[clamp(1.9rem,6vw,3rem)] leading-tight font-bold tracking-tight">
+    <h1 class="rise rise-2 mt-7 text-[clamp(1.9rem,6vw,3rem)] leading-tight font-bold tracking-tight">
       Samuel Bernardo
     </h1>
-    <p class="sobe sobe-3 mt-4 max-w-[58ch] text-[1.05rem] text-soft">
-      Desenvolvedor. Construo coisas simples que funcionam, da primeira linha de código ao deploy.
+    <p class="rise rise-3 mt-4 max-w-[58ch] text-[1.05rem] text-soft">
+      Software developer. I build simple things that work, from the first line of code to deploy.
     </p>
   </section>
 
   <section class="space-y-5 text-[1.05rem]">
-    <div class="sobe sobe-3">
+    <div class="rise rise-3">
       <p>
-        Prazer, eu sou o Samuel. Trabalho com a web e gosto de resolver problemas com a menor
-        quantidade de movimentos possível: código direto, manutenção fácil, sem firula.
+        Nice to meet you, I'm Samuel. I work on the web and like solving problems with as few
+        moving parts as possible: straightforward code, easy maintenance, no fluff.
       </p>
       <p class="mt-4">
-        Este site é a minha casa na internet: nele eu guardo
-        <a href="/projetos">o que já construí</a>,
-        <a href="/servicos">como posso ajudar</a> e
-        <a href="/blog">o que ando escrevendo</a>.
+        This site is my home on the internet. Here I keep
+        <a href="/projects">what I have built</a>,
+        <a href="/services">how I can help</a> and
+        <a href="/blog">what I have been writing</a>.
       </p>
       <p class="mt-4">
-        Fora do código: [escreva aqui um interesse seu — música, café, corrida, o que for].
+        Outside of code: [write one of your interests here — music, coffee, running, anything].
       </p>
     </div>
   </section>
 
   <section class="mt-16">
-    <h2 class="text-xl font-bold tracking-tight">Projetos</h2>
+    <h2 class="text-xl font-bold tracking-tight">Projects</h2>
     <ul class="mt-6 space-y-5">
-      {emDestaque.map((p, i) => <ProjectCard projeto={p} index={i} />)}
+      {showcase.map((p, i) => <ProjectCard project={p} index={i} />)}
     </ul>
     <p class="mt-5 font-mono text-xs">
-      <a href="/projetos">ver todos os projetos</a>
+      <a href="/projects">see all projects</a>
     </p>
   </section>
 
   <section class="mt-16">
-    <h2 class="text-xl font-bold tracking-tight">Últimos posts</h2>
+    <h2 class="text-xl font-bold tracking-tight">Latest posts</h2>
     <ul class="mt-6 divide-y divide-line border-y border-line">
       {
         posts.map((post) => (
           <li class="py-4">
-            <span class="font-mono text-xs text-soft">{dataLonga(post.data.pubDate)}</span>
+            <span class="font-mono text-xs text-soft">{longDate(post.data.pubDate)}</span>
             <a href={`/blog/${post.id}`} class="mt-1 block w-fit font-bold tracking-tight">
               {post.data.title}
             </a>
@@ -83,17 +83,17 @@ const emDestaque = (destaques.length ? destaques : todos).slice(0, 4);
       }
     </ul>
     <p class="mt-5 font-mono text-xs">
-      <a href="/blog">ver todos os posts</a>
+      <a href="/blog">see all posts</a>
     </p>
   </section>
 </Base>
 
 <script>
-  const botao = document.querySelector('.moeda-espaco');
-  const moeda = botao?.querySelector('.moeda');
+  const botao = document.querySelector('.coin-wrap');
+  const coin = botao?.querySelector('.coin');
   botao?.addEventListener('click', () => {
-    moeda?.classList.remove('girando');
-    moeda?.classList.add('girando');
+    coin?.classList.remove('spinning');
+    coin?.classList.add('spinning');
   });
-  moeda?.addEventListener('animationend', () => moeda.classList.remove('girando'));
+  coin?.addEventListener('animationend', () => coin.classList.remove('spinning'));
 </script>

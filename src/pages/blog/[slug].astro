@@ -1,7 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { getCollection, render } from 'astro:content';
-import { dataLonga } from '../../lib/datas';
+import { longDate } from '../../lib/dates';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
@@ -14,21 +14,21 @@ const { Content } = await render(post);
 
 <Base title={`${post.data.title} — Samuel Bernardo`} description={post.data.description}>
   <article class="pt-16 pb-10">
-    <header class="sobe pb-8">
-      <p class="sobe sobe-2 font-mono text-xs text-soft">
-        {dataLonga(post.data.pubDate)}
+    <header class="rise pb-8">
+      <p class="rise rise-2 font-mono text-xs text-soft">
+        {longDate(post.data.pubDate)}
         {post.data.tags.length > 0 && ` — ${post.data.tags.join(', ')}`}
       </p>
-      <h1 class="sobe sobe-2 mt-3 text-[clamp(1.9rem,5vw,2.6rem)] font-bold leading-tight tracking-tight">
+      <h1 class="rise rise-2 mt-3 text-[clamp(1.9rem,5vw,2.6rem)] font-bold leading-tight tracking-tight">
         {post.data.title}
       </h1>
     </header>
-    <div class="sobe sobe-3 conteudo max-w-[66ch]">
+    <div class="rise rise-3 prose max-w-[66ch]">
       <Content />
     </div>
   </article>
 
   <p class="pb-10 font-mono text-xs">
-    <a class="underline underline-offset-[3px]" href="/blog">voltar ao blog</a>
+    <a class="underline underline-offset-[3px]" href="/blog">back to blog</a>
   </p>
 </Base>

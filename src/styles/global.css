@@ -55,46 +55,44 @@ footer a {
   transition: text-decoration-color 0.15s ease;
 }
 
-header .marca {
+header .brand {
   text-decoration-line: none;
 }
 
-/* Texto rolante no nome do nav: sobe e o cargo vem de baixo. */
-.marca {
+.brand {
   overflow: hidden;
   height: 1.5em;
 }
-.marca .trilho {
+.brand .track {
   display: flex;
   flex-direction: column;
   transition: transform 0.9s cubic-bezier(0.22, 0.9, 0.3, 1);
 }
-.marca:hover .trilho {
+.brand:hover .track {
   transform: translateY(-1.5em);
 }
-.marca .trilho > span {
+.brand .track > span {
   display: block;
   height: 1.5em;
   line-height: 1.5;
   white-space: nowrap;
 }
-.marca .trilho .cargo {
+.brand .track .role {
   color: var(--c-accent);
 }
 
-/* Moeda 3D da foto de perfil: verso na cor de fundo da foto. */
-.moeda-espaco {
+.coin-wrap {
   perspective: 600px;
   width: 6rem;
   height: 6rem;
 }
 @media (min-width: 640px) {
-  .moeda-espaco {
+  .coin-wrap {
     width: 7rem;
     height: 7rem;
   }
 }
-.moeda {
+.coin {
   position: relative;
   display: block;
   width: 100%;
@@ -102,19 +100,19 @@ header .marca {
   transform-style: preserve-3d;
   transition: transform 1.2s cubic-bezier(0.3, 0.7, 0.3, 1);
 }
-.moeda-espaco:hover .moeda {
+.coin-wrap:hover .coin {
   transform: rotateY(360deg);
   transition-duration: 1.6s;
 }
-.moeda.girando {
-  animation: girar-moeda 1.6s cubic-bezier(0.3, 0.7, 0.3, 1);
+.coin.spinning {
+  animation: spin-coin 1.6s cubic-bezier(0.3, 0.7, 0.3, 1);
 }
-@keyframes girar-moeda {
+@keyframes spin-coin {
   to {
     transform: rotateY(360deg);
   }
 }
-.moeda > .face {
+.coin > .face {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -123,7 +121,7 @@ header .marca {
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
-.moeda > .verso {
+.coin > .back {
   transform: rotateY(180deg);
   background: #e6dfd7;
   border: 1px solid var(--c-line);
@@ -138,7 +136,7 @@ header nav a[aria-current='page'] {
   text-decoration-line: underline;
 }
 
-html.js .revela {
+html.js .reveal {
   opacity: 0;
   transform: translateY(18px);
   transition:
@@ -146,12 +144,12 @@ html.js .revela {
     transform 0.55s cubic-bezier(0.2, 0.7, 0.2, 1);
   transition-delay: var(--delay, 0s);
 }
-html.js .revela.visivel {
+html.js .reveal.visible {
   opacity: 1;
   transform: none;
 }
 @media (prefers-reduced-motion: reduce) {
-  html.js .revela {
+  html.js .reveal {
     opacity: 1;
     transform: none;
     transition: none;
@@ -159,19 +157,19 @@ html.js .revela.visivel {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .sobe {
-    animation: sobe 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  .rise {
+    animation: rise 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both;
     animation-delay: var(--delay, 0s);
   }
-  .sobe-2 {
+  .rise-2 {
     --delay: 0.07s;
   }
-  .sobe-3 {
+  .rise-3 {
     --delay: 0.14s;
   }
 }
 
-@keyframes sobe {
+@keyframes rise {
   from {
     opacity: 0;
     transform: translateY(14px);
@@ -182,57 +180,57 @@ html.js .revela.visivel {
   }
 }
 
-.conteudo :where(h2) {
+.prose :where(h2) {
   font-size: 1.25rem;
   font-weight: 700;
   letter-spacing: -0.01em;
   margin: 2.2em 0 0.6em;
 }
-.conteudo :where(h3) {
+.prose :where(h3) {
   font-size: 1.0625rem;
   font-weight: 700;
   margin: 1.8em 0 0.5em;
 }
-.conteudo :where(p, ul, ol) {
+.prose :where(p, ul, ol) {
   margin: 1em 0;
   line-height: 1.8;
 }
-.conteudo :where(ul) {
+.prose :where(ul) {
   list-style: disc;
   padding-left: 1.25em;
 }
-.conteudo :where(ol) {
+.prose :where(ol) {
   list-style: decimal;
   padding-left: 1.25em;
 }
-.conteudo :where(li + li) {
+.prose :where(li + li) {
   margin-top: 0.4em;
 }
-.conteudo :where(code) {
+.prose :where(code) {
   background: var(--c-mark);
   padding: 0.15em 0.35em;
   border-radius: 0.25em;
   font-size: 0.9em;
 }
-.conteudo :where(pre) {
+.prose :where(pre) {
   background: var(--c-ink);
   color: var(--c-paper);
   padding: 1rem 1.25rem;
   border-radius: 0.5rem;
   overflow-x: auto;
 }
-.conteudo :where(pre code) {
+.prose :where(pre code) {
   background: none;
   color: inherit;
   padding: 0;
 }
-.conteudo :where(blockquote) {
+.prose :where(blockquote) {
   border-left: 3px solid var(--c-line);
   padding-left: 1rem;
   color: var(--c-soft);
   font-style: italic;
 }
-.conteudo :where(hr) {
+.prose :where(hr) {
   border: 0;
   border-top: 1px solid var(--c-line);
   margin: 2.5em 0;

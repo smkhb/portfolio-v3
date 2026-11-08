@@ -1,0 +1,55 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../config/site';
+
+const services = [
+  {
+    title: 'Websites and landing pages',
+    description:
+      'From layout to deploy: fast, static, easy-to-maintain pages. A good first question: who will edit this site later?',
+  },
+  {
+    title: 'Web apps and systems',
+    description:
+      'Applications built with Astro, TypeScript and the right tool for the problem, without excess in the stack.',
+  },
+  {
+    title: 'Maintenance and consulting',
+    description:
+      'Fixes, improvements and technical review for existing sites and projects that need continuous care.',
+  },
+];
+---
+
+<Base title="Services — Samuel Bernardo" description="How I can help: websites, web apps, maintenance and consulting.">
+  <header class="rise pt-16 pb-10">
+    <h1 class="text-[clamp(2.2rem,6vw,3.2rem)] font-bold leading-tight tracking-tight">Services</h1>
+    <p class="rise rise-2 mt-4 max-w-[58ch] leading-relaxed text-soft">
+      The kinds of work I usually take on. If your case doesn't fit any of them,
+      send me a message anyway and we'll talk.
+    </p>
+  </header>
+
+  <ul class="border-t border-line">
+    {
+      services.map((s, i) => (
+        <li
+          class="reveal border-b border-line py-7"
+          style={`--delay: ${Math.min(i * 0.07, 0.21)}s`}
+        >
+          <h2 class="text-xl font-bold tracking-tight">{s.title}</h2>
+          <p class="mt-2 leading-relaxed text-soft">{s.description}</p>
+        </li>
+      ))
+    }
+  </ul>
+
+  <section class="reveal mt-10 rounded-lg border border-line p-6" style="--delay: 0.28s">
+    <h2 class="font-bold tracking-tight">How to get started</h2>
+    <p class="mt-2 leading-relaxed text-soft">
+      Email me at
+      <a class="underline underline-offset-[3px]" href={`mailto:${SITE.email}`}>{SITE.email}</a>
+      with a description of what you need. I'll reply with questions, a timeline and a price.
+    </p>
+  </section>
+</Base>

@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('projects')).sort((a, b) => b.data.year - a.data.year);
+---
+
+<Base title="Projects — Samuel Bernardo" description="Projects I have built, maintained or contributed to.">
+  <header class="rise pt-16 pb-10">
+    <h1 class="text-[clamp(2rem,5.5vw,2.8rem)] font-bold leading-tight tracking-tight">Projects</h1>
+    <p class="rise rise-2 mt-4 max-w-[58ch] text-soft">
+      What I have built so far, newest first.
+    </p>
+  </header>
+
+  <ul class="space-y-5 pb-4">
+    {projects.map((p, i) => <ProjectCard project={p} index={i} tag="h2" />)}
+  </ul>
+</Base>

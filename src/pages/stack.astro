@@ -2,34 +2,34 @@
 import Base from '../layouts/Base.astro';
 
 const stack = [
-  { nome: 'Astro', uso: 'Sites rápidos e estáticos' },
-  { nome: 'TypeScript', uso: 'Tipagem de ponta a ponta' },
-  { nome: 'Tailwind CSS', uso: 'Estilos sem sair do HTML' },
-  { nome: 'pnpm', uso: 'Pacotes e scripts' },
-  { nome: 'VS Code', uso: 'Editor do dia a dia' },
-  { nome: 'GitHub', uso: 'Código e versionamento' },
-  { nome: 'Cloudflare', uso: 'Hospedagem e DNS' },
-  { nome: 'Figma', uso: 'Design e protótipos' },
+  { name: 'Astro', use: 'Fast, static websites' },
+  { name: 'TypeScript', use: 'End-to-end typing' },
+  { name: 'Tailwind CSS', use: 'Styling without leaving the HTML' },
+  { name: 'pnpm', use: 'Packages and scripts' },
+  { name: 'VS Code', use: 'Daily editor' },
+  { name: 'GitHub', use: 'Code and version control' },
+  { name: 'Cloudflare', use: 'Hosting and DNS' },
+  { name: 'Figma', use: 'Design and prototypes' },
 ];
 ---
 
-<Base title="Stack — Samuel Bernardo" description="As ferramentas que eu uso no dia a dia.">
-  <header class="sobe pt-16 pb-10">
+<Base title="Stack — Samuel Bernardo" description="The tools I use every day.">
+  <header class="rise pt-16 pb-10">
     <h1 class="text-[clamp(2rem,5.5vw,2.8rem)] font-bold tracking-tight">Stack</h1>
-    <p class="sobe sobe-2 mt-4 max-w-[58ch] text-soft">
-      As ferramentas que eu uso todos os dias para construir coisas na web.
+    <p class="rise rise-2 mt-4 max-w-[58ch] text-soft">
+      The tools I use every day to build things for the web.
     </p>
   </header>
 
   <ul class="border-t border-dashed border-line pb-4">
     {
-      stack.map((ferramenta, i) => (
+      stack.map((tool, i) => (
         <li
-          class="revela flex items-baseline justify-between gap-6 border-b border-dashed border-line py-5"
+          class="reveal flex items-baseline justify-between gap-6 border-b border-dashed border-line py-5"
           style={`--delay: ${Math.min(i * 0.06, 0.3)}s`}
         >
-          <span class="font-bold tracking-tight">{ferramenta.nome}</span>
-          <span class="text-right text-sm text-soft">{ferramenta.uso}</span>
+          <span class="font-bold tracking-tight">{tool.name}</span>
+          <span class="text-right text-sm text-soft">{tool.use}</span>
         </li>
       ))
     }

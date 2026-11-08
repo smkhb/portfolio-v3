@@ -12,17 +12,17 @@ const blog = defineCollection({
   }),
 });
 
-const projetos = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/projetos' }),
+const projects = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    url: z.string().url().optional(),
-    repo: z.string().url().optional(),
+    url: z.url().optional(),
+    repo: z.url().optional(),
     year: z.number(),
     tags: z.array(z.string()).default([]),
     featured: z.boolean().default(false),
   }),
 });
 
-export const collections = { blog, projetos };
+export const collections = { blog, projects };

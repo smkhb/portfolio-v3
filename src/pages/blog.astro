@@ -1,36 +1,36 @@
 ---
 import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
-import { dataLonga } from '../lib/datas';
+import { longDate } from '../lib/dates';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 
-const porAno = new Map<number, typeof posts>();
+const byYear = new Map<number, typeof posts>();
 for (const post of posts) {
   const y = post.data.pubDate.getFullYear();
-  if (!porAno.has(y)) porAno.set(y, []);
-  porAno.get(y)!.push(post);
+  if (!byYear.has(y)) byYear.set(y, []);
+  byYear.get(y)!.push(post);
 }
 ---
 
-<Base title="Blog — Samuel Bernardo" description="Posts sobre código, web e o que eu ando aprendendo.">
-  <header class="sobe pt-16 pb-10">
+<Base title="Blog — Samuel Bernardo" description="Posts about code, the web and what I am learning.">
+  <header class="rise pt-16 pb-10">
     <h1 class="text-[clamp(2.2rem,6vw,3.2rem)] font-bold leading-tight tracking-tight">Blog</h1>
-    <p class="sobe sobe-2 mt-4 max-w-[58ch] leading-relaxed text-soft">
-      Anotações sobre código, web e o que eu ando aprendendo.
+    <p class="rise rise-2 mt-4 max-w-[58ch] leading-relaxed text-soft">
+      Notes on code, the web and what I am learning.
     </p>
   </header>
 
   {
-    [...porAno.entries()].map(([ano, lista], i) => (
-      <section class="revela mb-10" style={`--delay: ${Math.min(i * 0.07, 0.21)}s`}>
-        <h2 class="font-mono text-sm text-soft">{ano}</h2>
+    [...byYear.entries()].map(([year, list], i) => (
+      <section class="reveal mb-10" style={`--delay: ${Math.min(i * 0.07, 0.21)}s`}>
+        <h2 class="font-mono text-sm text-soft">{year}</h2>
         <ul class="mt-3 divide-y divide-line border-y border-line">
-          {lista.map((post) => (
+          {list.map((post) => (
             <li class="py-5">
-              <span class="font-mono text-xs text-soft">{dataLonga(post.data.pubDate)}</span>
+              <span class="font-mono text-xs text-soft">{longDate(post.data.pubDate)}</span>
               <a href={`/blog/${post.id}`} class="mt-1 block w-fit text-lg font-bold tracking-tight">
                 {post.data.title}
               </a>
@@ -44,7 +44,7 @@ for (const post of posts) {
 
   {
     posts.length === 0 && (
-      <p class="text-soft">Nenhum post publicado ainda. Volte logo: o primeiro está a caminho.</p>
+      <p class="text-soft">No posts published yet. Check back soon: the first one is on its way.</p>
     )
   }
 </Base>
