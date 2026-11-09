@@ -5,7 +5,6 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 [![pnpm](https://img.shields.io/badge/pnpm-F69220?logo=pnpm&logoColor=white)](https://pnpm.io)
 [![Cloudflare Pages](https://img.shields.io/badge/Cloudflare_Pages-F38020?logo=cloudflarepages&logoColor=white)](https://pages.cloudflare.com)
-[![License: MIT](https://img.shields.io/badge/License-MIT-24d05a.svg)](#license)
 
 > 🪙 Samuel Bernardo's personal portfolio — a fast, dark-only static site built with Astro, TypeScript and Tailwind CSS and published on Cloudflare Pages.
 
