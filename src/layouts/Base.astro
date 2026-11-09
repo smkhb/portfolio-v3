@@ -12,12 +12,12 @@ const { title = SITE.title, description = SITE.description, lang = 'en' } = Astr
 
 const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
 const nav = [
-  { href: '/', label: 'Bio' },
-  { href: '/projects', label: 'Projects' },
-  { href: '/services', label: 'Services' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/stack', label: 'Stack' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/', label: 'bio' },
+  { href: '/projects', label: 'projects' },
+  { href: '/services', label: 'services' },
+  { href: '/blog', label: 'blog' },
+  { href: '/stack', label: 'stack' },
+  { href: '/contact', label: 'contact' },
 ];
 const isCurrent = (href: string) =>
   path === href || (href !== '/' && path.startsWith(href + '/'));
