@@ -32,7 +32,7 @@ const projects = (await getCollection('projects')).sort((a, b) => b.data.year - 
     <h1 class="rise rise-2 mt-7 text-[clamp(1.9rem,6vw,3rem)] leading-tight font-bold tracking-tight">
       Samuel Bernardo
     </h1>
-    <p class="rise rise-3 mt-4 max-w-[58ch] text-[1.05rem] text-soft">
+    <p class="rise rise-3 mt-4 max-w-[58ch] text-[1.05rem] text-soft italic">
       Software developer. I build things that work, from the first line of code to deploy.
     </p>
   </section>
@@ -44,13 +44,13 @@ const projects = (await getCollection('projects')).sort((a, b) => b.data.year - 
         moving parts as possible: straightforward code, easy maintenance, no fluff.
       </p>
       <p class="mt-4">
-     This site is where you can find information about me and my work. Here I show{" "}
+     Here's is where you can find information about me and my work. Here I show{" "}
         <a href="/projects">what I have built</a>,{" "}
         <a href="/services">how I can help</a> and{" "}
         <a href="/blog">what I have been writing</a>.
       </p>
       <p class="mt-4">
-        Outside of code: I like to read fiction, philosophy and classical literature. I also enjoy watching La Liga, NBA, anime and movies.
+        <span class="font-bold">About me:</span> I like to read fiction, philosophy and classical literature. I also enjoy watching La Liga, NBA, anime and movies.
       </p>
     </div>
   </section>
@@ -65,7 +65,7 @@ const projects = (await getCollection('projects')).sort((a, b) => b.data.year - 
     </p>
   </section>
 
-  <section class="mt-16">
+  <section class="mt-16 pb-8">
     <h2 class="text-xl font-bold tracking-tight">Latest posts</h2>
     <ul class="mt-6 divide-y divide-line border-y border-line">
       {
