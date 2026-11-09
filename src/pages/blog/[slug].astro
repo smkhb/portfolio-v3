@@ -14,7 +14,7 @@ const { Content } = await render(post);
 
 <Base title={`${post.data.title} — Samuel Bernardo`} description={post.data.description}>
   <article class="pt-16 pb-10">
-    <header class="rise pb-8">
+    <header class="rise pb-4">
       <p class="rise rise-2 font-mono text-xs text-soft">
         {longDate(post.data.pubDate)}
         {post.data.tags.length > 0 && ` — ${post.data.tags.join(', ')}`}
