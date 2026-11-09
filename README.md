@@ -1,4 +1,4 @@
-# portfolio-v3
+# Portfolio
 
 Personal portfolio. Astro + TypeScript + Tailwind, published as static files on Cloudflare Pages.
 
