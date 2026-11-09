@@ -1,6 +1,7 @@
 ---
 title: "Link Shortener API"
 description: "REST API to create and manage short links, with JWT auth, refresh tokens, password reset by email and visit counters."
+url: "https://github.com/smkhb/link-short-api"
 repo: "https://github.com/smkhb/link-short-api"
 year: 2026
 tags: ["fastify", "typescript", "postgresql", "drizzle"]

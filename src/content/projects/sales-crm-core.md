@@ -1,6 +1,7 @@
 ---
 title: "Sales CRM Core"
 description: "Framework-free domain and application core for a sales CRM: entities, use cases and domain events in TypeScript."
+url: "https://github.com/smkhb/sales-crm-core"
 repo: "https://github.com/smkhb/sales-crm-core"
 year: 2025
 tags: ["typescript", "ddd", "vitest"]

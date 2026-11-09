@@ -1,6 +1,7 @@
 ---
 title: "AI Resume Analyzer"
 description: "Self-hosted app that compares a PDF resume with a job description and returns an ATS score with structured feedback."
+url: "https://github.com/smkhb/ai-resume-analyzer"
 repo: "https://github.com/smkhb/ai-resume-analyzer"
 year: 2026
 tags: ["react", "bun", "hono", "gemini"]
