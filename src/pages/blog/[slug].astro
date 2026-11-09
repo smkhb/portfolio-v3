@@ -1,6 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { getCollection, render } from 'astro:content';
+import { getCollection, getEntry, render } from 'astro:content';
 import { longDate } from '../../lib/dates';
 
 export async function getStaticPaths() {
@@ -10,15 +10,26 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+// Portuguese version of this post, if it exists
+const translation = await getEntry('blogPt', post.id);
 ---
 
 <Base title={`${post.data.title} — Samuel Bernardo`} description={post.data.description}>
   <article class="pt-16 pb-10">
     <header class="rise pb-4">
-      <p class="rise rise-2 font-mono text-xs text-soft">
-        {longDate(post.data.pubDate)}
-        {post.data.tags.length > 0 && ` — ${post.data.tags.join(', ')}`}
-      </p>
+      <div class="flex flex-col gap-1">
+        <p class="rise rise-2 font-mono text-xs text-soft">
+          <span class="font-bold">Date: </span>{longDate(post.data.pubDate)}      
+        </p>
+        <p class="rise rise-2 font-mono text-xs text-soft">
+          <span class="font-bold">Tags: </span> {post.data.tags.length > 0 && `${post.data.tags.join(' | ')}`}
+        </p>
+        <p class="rise rise-2 font-mono text-xs text-soft">
+          {translation && (
+            <a href={`/pt/blog/${post.id}`} hreflang="pt-Br">Read in Portuguese</a>
+          )}
+        </p>
+      </div>
       <h1 class="rise rise-2 mt-3 text-[clamp(1.9rem,5vw,2.6rem)] font-bold leading-tight tracking-tight">
         {post.data.title}
       </h1>

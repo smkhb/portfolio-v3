@@ -1,0 +1,31 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import { longDate } from '../../../lib/dates';
+
+const posts = (await getCollection('blogPt', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<Base lang="pt-BR" title="Blog — Samuel Bernardo" description="Posts em português.">
+  <header class="rise pt-16 pb-10">
+    <h1 class="text-[clamp(2.2rem,6vw,3.2rem)] font-bold leading-tight tracking-tight">Blog</h1>
+  </header>
+
+  <ul class="divide-y divide-line border-y border-line">
+    {
+      posts.map((post) => (
+        <li class="py-5">
+          <span class="font-mono text-xs text-soft">{longDate(post.data.pubDate, 'pt-BR')}</span>
+          <a href={`/pt/blog/${post.id}`} class="mt-1 block w-fit text-lg font-bold tracking-tight">
+            {post.data.title}
+          </a>
+          <span class="mt-1 block text-sm leading-relaxed text-soft">{post.data.description}</span>
+        </li>
+      ))
+    }
+  </ul>
+
+  {posts.length === 0 && <p class="text-soft">Nenhum post publicado ainda.</p>}
+</Base>

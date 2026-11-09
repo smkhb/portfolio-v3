@@ -1,0 +1,50 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { getCollection, getEntry, render } from 'astro:content';
+import { longDate } from '../../../lib/dates';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blogPt', ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+// English version of this post, if it exists
+const translation = await getEntry('blog', post.id);
+---
+
+<Base
+  lang="pt-BR"
+  title={`${post.data.title} — Samuel Bernardo`}
+  description={post.data.description}
+>
+  <article class="pt-16 pb-10">
+    <header class="rise pb-4">
+      <div>
+        <p class="rise rise-2 font-mono text-xs text-soft">
+          <span class="font-bold">Data: </span>  {longDate(post.data.pubDate, 'pt-BR')}     
+        </p>
+        <p class="rise rise-2 font-mono text-xs text-soft">
+          <span class="font-bold">Tags: </span> {post.data.tags.length > 0 && `${post.data.tags.join(' | ')}`}
+        </p>
+        <p class="rise rise-2 font-mono text-xs text-soft">
+          {translation && (
+              <a href={`/blog/${post.id}`} hreflang="en">Leia em Inglês</a>
+          )}
+        </p>
+
+      </div>
+      <h1 class="rise rise-2 mt-3 text-[clamp(1.9rem,5vw,2.6rem)] font-bold leading-tight tracking-tight">
+        {post.data.title}
+      </h1>
+    </header>
+    <div class="rise rise-3 prose max-w-[66ch]">
+      <Content />
+    </div>
+  </article>
+
+  <p class="pb-10 font-mono text-xs">
+    <a class="underline underline-offset-[3px]" href="/pt/blog">voltar ao blog</a>
+  </p>
+</Base>
