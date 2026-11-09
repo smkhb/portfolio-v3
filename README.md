@@ -1,10 +1,38 @@
 # Portfolio
 
-Personal portfolio. Astro + TypeScript + Tailwind, published as static files on Cloudflare Pages.
+[![Astro](https://img.shields.io/badge/Astro-7-BC52EE?logo=astro&logoColor=white)](https://astro.build)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
+[![pnpm](https://img.shields.io/badge/pnpm-F69220?logo=pnpm&logoColor=white)](https://pnpm.io)
+[![Cloudflare Pages](https://img.shields.io/badge/Cloudflare_Pages-F38020?logo=cloudflarepages&logoColor=white)](https://pages.cloudflare.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-24d05a.svg)](#license)
+
+> 🪙 Samuel Bernardo's personal portfolio — a fast, dark-only static site built with Astro, TypeScript and Tailwind CSS and published on Cloudflare Pages.
 
 Fixed dark theme (`#141414`). Links keep the text color with a colored underline, randomly picked from green, pink, blue and yellow on each load and on each hover (same behavior as Cassidy's blahg, which served as inspiration). The profile picture spins like a 3D coin on hover and click.
 
-## Commands
+## ✨ Features
+
+- 🎨 **Dark-only design** with a `#141414` background and iA Writer Mono (400/700)
+- 🔗 **Random underline colors** re-drawn on every hover, no background or text-color change
+- 🪙 **3D coin flip** on the profile picture and a rolling brand name in the header
+- 🎬 **Entrance animations** (`rise` / `reveal`) on every page
+- 📝 **Content collections** for blog posts and projects, with drafts and tags
+- 📦 **Zero JavaScript frameworks** — static HTML, a few inline scripts, no hydration
+- 🚀 **Static output** ready for Cloudflare Pages
+
+## 🧰 Tech stack
+
+| Layer | Tools |
+| --- | --- |
+| Framework | Astro 7 |
+| Language | TypeScript |
+| Styling | Tailwind CSS 4, custom CSS tokens |
+| Fonts | iA Writer Mono (`@fontsource`) |
+| Package manager | pnpm |
+| Hosting | Cloudflare Pages |
+
+## 🚀 Commands
 
 | Command | Action |
 | --- | --- |
@@ -13,7 +41,7 @@ Fixed dark theme (`#141414`). Links keep the text color with a colored underline
 | `pnpm build` | Production build to `./dist/` |
 | `pnpm preview` | Serve the build locally |
 
-## What to edit where
+## 🗂️ What to edit where
 
 | What | Where |
 | --- | --- |
@@ -25,7 +53,7 @@ Fixed dark theme (`#141414`). Links keep the text color with a colored underline
 | Blog posts | `src/content/posts/*.md` |
 | Colors and fonts | `src/styles/global.css` (variables in `:root`) |
 
-### Add a project
+### ➕ Add a project
 
 Create a file in `src/content/projects/`:
 
@@ -43,11 +71,11 @@ featured: false
 Free text about the project.
 ```
 
-### Publish a post
+### ✍️ Publish a post
 
 Create a file in `src/content/posts/` with `title`, `description`, `pubDate` and `tags` in the header. The file name becomes the URL: `my-post.md` -> `/blog/my-post`. Use `draft: true` for drafts.
 
-## Deploy on Cloudflare Pages (recommended)
+## ☁️ Deploy on Cloudflare Pages (recommended)
 
 1. Push this repository to GitHub.
 2. In the Cloudflare dashboard: **Workers & Pages -> Create -> Pages -> Connect to Git**, and select the repository.
@@ -60,13 +88,13 @@ Create a file in `src/content/posts/` with `title`, `description`, `pubDate` and
 
 To use your own domain: **Pages -> your project -> Custom domains** and follow the dashboard steps.
 
-### Alternatives
+### 🔁 Alternatives
 
 - **GitHub Pages**: add the `@astrojs/github-actions` integration or a workflow that runs `pnpm build` and publishes `dist/` — see https://docs.astro.build/en/guides/deploy/github/
 - **Netlify**: connect the repository; the Astro preset detects `pnpm build` and `dist` on its own.
 - **Coolify**: create an app pointing at the repository, build command `pnpm build`, static folder `dist`.
 
-## Structure
+## 📁 Structure
 
 ```
 src/
@@ -78,3 +106,7 @@ src/
   pages/                one page per section
   styles/global.css     design tokens (colors, fonts, animation)
 ```
+
+## 📄 License
+
+MIT — free to read, learn from and reuse.
