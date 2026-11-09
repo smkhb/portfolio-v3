@@ -106,7 +106,3 @@ src/
   pages/                one page per section
   styles/global.css     design tokens (colors, fonts, animation)
 ```
-
-## 📄 License
-
-MIT — free to read, learn from and reuse.
