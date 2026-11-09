@@ -1,6 +1,6 @@
 # portfolio-v3
 
-Samuel Bernardo's personal portfolio. Astro + TypeScript + Tailwind, published as static files on Cloudflare Pages.
+Personal portfolio. Astro + TypeScript + Tailwind, published as static files on Cloudflare Pages.
 
 Fixed dark theme (`#141414`). Links keep the text color with a colored underline, randomly picked from green, pink, blue and yellow on each load and on each hover (same behavior as Cassidy's blahg, which served as inspiration). The profile picture spins like a 3D coin on hover and click.
 
