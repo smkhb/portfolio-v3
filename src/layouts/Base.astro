@@ -5,9 +5,10 @@ import { SITE } from '../config/site';
 interface Props {
   title?: string;
   description?: string;
+  lang?: string;
 }
 
-const { title = SITE.title, description = SITE.description } = Astro.props;
+const { title = SITE.title, description = SITE.description, lang = 'en' } = Astro.props;
 
 const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
 const nav = [
@@ -23,7 +24,7 @@ const isCurrent = (href: string) =>
 ---
 
 <!doctype html>
-<html lang="en">
+  <html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
