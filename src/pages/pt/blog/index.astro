@@ -11,6 +11,9 @@ const posts = (await getCollection('blogPt', ({ data }) => !data.draft)).sort(
 <Base lang="pt-BR" title="Blog — Samuel Bernardo" description="Posts em português.">
   <header class="rise pt-16 pb-10">
     <h1 class="text-[clamp(2.2rem,6vw,3.2rem)] font-bold leading-tight tracking-tight">Blog</h1>
+        <p class="rise rise-2 mt-4 max-w-[58ch] leading-relaxed text-soft">
+      Posts sobre o que estou aprendendo, pensamento em código e ideias.
+    </p>
   </header>
 
   <ul class="divide-y divide-line border-y border-line">
@@ -18,7 +21,7 @@ const posts = (await getCollection('blogPt', ({ data }) => !data.draft)).sort(
       posts.map((post) => (
         <li class="py-5">
           <span class="font-mono text-xs text-soft">{longDate(post.data.pubDate, 'pt-BR')}</span>
-          <a href={`/pt/blog/${post.id}`} class="mt-1 block w-fit text-lg font-bold tracking-tight">
+          <a href={`/pt/blog/${post.id}`}  class="mt-1 block w-fit text-lg font-bold tracking-tight">
             {post.data.title}
           </a>
           <span class="mt-1 block text-sm leading-relaxed text-soft">{post.data.description}</span>
