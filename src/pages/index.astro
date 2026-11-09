@@ -8,9 +8,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 
-const all = (await getCollection('projects')).sort((a, b) => b.data.year - a.data.year);
-const featured = all.filter((p) => p.data.featured);
-const showcase = (featured.length ? featured : all).slice(0, 4);
+const projects = (await getCollection('projects')).sort((a, b) => b.data.year - a.data.year).slice(0, 2);
 ---
 
 <Base title="Samuel Bernardo — bio">
@@ -35,24 +33,24 @@ const showcase = (featured.length ? featured : all).slice(0, 4);
       Samuel Bernardo
     </h1>
     <p class="rise rise-3 mt-4 max-w-[58ch] text-[1.05rem] text-soft">
-      Software developer. I build simple things that work, from the first line of code to deploy.
+      Software developer. I build things that work, from the first line of code to deploy.
     </p>
   </section>
 
   <section class="space-y-5 text-[1.05rem]">
     <div class="rise rise-3">
       <p>
-        Nice to meet you, I'm Samuel. I work on the web and like solving problems with as few
+        Nice to meet you, I'm Sam. I work on the web and like solving problems with as few
         moving parts as possible: straightforward code, easy maintenance, no fluff.
       </p>
       <p class="mt-4">
-        This site is my home on the internet. Here I keep
-        <a href="/projects">what I have built</a>,
-        <a href="/services">how I can help</a> and
+     This site is where you can find information about me and my work. Here I show{" "}
+        <a href="/projects">what I have built</a>,{" "}
+        <a href="/services">how I can help</a> and{" "}
         <a href="/blog">what I have been writing</a>.
       </p>
       <p class="mt-4">
-        Outside of code: [write one of your interests here — music, coffee, running, anything].
+        Outside of code: I like to read fiction, philosophy and classical literature. I also enjoy watching La Liga, NBA, anime and movies.
       </p>
     </div>
   </section>
@@ -60,7 +58,7 @@ const showcase = (featured.length ? featured : all).slice(0, 4);
   <section class="mt-16">
     <h2 class="text-xl font-bold tracking-tight">Projects</h2>
     <ul class="mt-6 space-y-5">
-      {showcase.map((p, i) => <ProjectCard project={p} index={i} />)}
+      {projects.map((p, i) => <ProjectCard project={p} index={i} />)}
     </ul>
     <p class="mt-5 font-mono text-xs">
       <a href="/projects">see all projects</a>
