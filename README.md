@@ -16,6 +16,7 @@ Fixed dark theme (`#141414`). Links keep the text color with a colored underline
 - 🪙 **3D coin flip** on the profile picture and a rolling brand name in the header
 - 🎬 **Entrance animations** (`rise` / `reveal`) on every page
 - 📝 **Content collections** for blog posts and projects, with drafts and tags
+- 🌎 **Blog in English and Portuguese**: English is the default, and each post can have a Portuguese version at `/pt/blog/<slug>`, with a switch link between them
 - 📦 **Zero JavaScript frameworks** — static HTML, a few inline scripts, no hydration
 - 🚀 **Static output** ready for Cloudflare Pages
 
@@ -48,7 +49,8 @@ Fixed dark theme (`#141414`). Links keep the text color with a colored underline
 | Services text | `src/pages/services.astro` |
 | Tools on the Stack page | `src/pages/stack.astro` |
 | Projects | `src/content/projects/*.md` |
-| Blog posts | `src/content/posts/*.md` |
+| Blog posts (English) | `src/content/posts/en/*.md` |
+| Blog posts (Portuguese) | `src/content/posts/pt/*.md` |
 | Colors and fonts | `src/styles/global.css` (variables in `:root`) |
 
 ### ➕ Add a project
@@ -71,7 +73,16 @@ Free text about the project.
 
 ### ✍️ Publish a post
 
-Create a file in `src/content/posts/` with `title`, `description`, `pubDate` and `tags` in the header. The file name becomes the URL: `my-post.md` -> `/blog/my-post`. Use `draft: true` for drafts.
+Create a file in `src/content/posts/en/` with `title`, `description`, `pubDate` and `tags` in the header. The file name becomes the URL: `my-post.md` -> `/blog/my-post`. Use `draft: true` for drafts.
+
+### 🌎 Add a Portuguese version
+
+Create a file with the **same name** in `src/content/posts/pt/`, for example `src/content/posts/pt/my-post.md`. The language comes from the folder, so no `lang` field is needed.
+
+- The English post gets a **Português** link, pointing to `/pt/blog/my-post`.
+- The Portuguese post gets an **English** link back to `/blog/my-post`.
+- A post without a translation shows no switch link.
+- Portuguese posts are listed only in `/pt/blog`, and English posts only in `/blog`.
 
 ## ☁️ Deploy on Cloudflare Pages (recommended)
 
@@ -97,10 +108,12 @@ To use your own domain: **Pages -> your project -> Custom domains** and follow t
 ```
 src/
   config/site.ts        identity and links
-  content/posts/        blog posts (Markdown)
+  content/posts/en/     blog posts in English (Markdown)
+  content/posts/pt/     blog posts in Portuguese (Markdown)
   content/projects/     projects (Markdown)
-  layouts/Base.astro    header, footer, scripts
-  lib/dates.ts          date formatting (en-US)
+  layouts/Base.astro    header, footer, scripts, <html lang>
+  lib/dates.ts          date formatting (en-US or pt-BR)
   pages/                one page per section
+  pages/pt/blog/        Portuguese blog index and posts
   styles/global.css     design tokens (colors, fonts, animation)
 ```
