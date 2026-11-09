@@ -14,7 +14,13 @@ const { Content } = await render(post);
 const translation = await getEntry('blogPt', post.id);
 ---
 
-<Base title={`${post.data.title} — Samuel Bernardo`} description={post.data.description}>
+<Base 
+title={`${post.data.title} — Samuel Bernardo`} 
+description={post.data.description} alternates={translation ? [
+  { hreflang: 'en-US', path: `/blog/${post.id}/` },
+  { hreflang: 'pt-BR', path: `/pt/blog/${post.id}/` },
+  ] : []}
+>
   <article class="pt-16 pb-10">
     <header class="rise pb-4">
       <div class="flex flex-col gap-1">
@@ -26,7 +32,7 @@ const translation = await getEntry('blogPt', post.id);
         </p>
         <p class="rise rise-2 font-mono text-xs text-soft">
           {translation && (
-            <a href={`/pt/blog/${post.id}`} hreflang="pt-Br">Read in Portuguese</a>
+            <a href={`/pt/blog/${post.id}`}>Read in Portuguese</a>
           )}
         </p>
       </div>
