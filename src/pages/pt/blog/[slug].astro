@@ -25,7 +25,7 @@ const translation = await getEntry('blog', post.id);
 >
   <article class="pt-16 pb-10">
     <header class="rise pb-4">
-      <div>
+      <div class="flex flex-col gap-1">
         <p class="rise rise-2 font-mono text-xs text-soft">
           <span class="font-bold">Data: </span>  {longDate(post.data.pubDate, 'pt-BR')}     
         </p>
