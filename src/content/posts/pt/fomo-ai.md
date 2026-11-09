@@ -3,6 +3,7 @@ title: "FOMO e a dificuldade com IA"
 description: "Minha experiencia com Vibecode, modelos de IA e Twitter."
 pubDate: 2026-11-09
 tags: ["AI", "Personal", "Learning"]
+lang: pt
 ---
 
 Recentemente, construí este site de forma simples e rápida. Usei como base o source code de blog de uma garota com um design divertido e o source code de um dev que acompanho e gosto, mas a inspiração e o site não são o foco aqui. O foco é: por muito tempo, evitei usar IA na abordagem "vibecode" e isso me atrasou absurdamente.

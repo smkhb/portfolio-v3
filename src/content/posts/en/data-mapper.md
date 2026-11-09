@@ -3,6 +3,7 @@ title: "Data Mapper"
 description: "What is a Data Mapper?"
 pubDate: 2025-06-09
 tags: ["Design Pattern"]
+lang: en
 ---
 
 Modern software development requires building robust, flexible, and easily maintainable systems. One of the main challenges lies in managing data persistence—how information is stored and retrieved from a database while keeping the application's business logic decoupled from technical storage details. In this context, the Data Mapper pattern emerges as a fundamental architectural solution to address this separation of concerns.
