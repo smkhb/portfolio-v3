@@ -1,5 +1,8 @@
 # Portfolio
 
+<img width="1584" height="396" alt="Banner" src="https://github.com/user-attachments/assets/bc18effa-2f1f-4958-af83-2eb37366c329" />
+
+
 [![Astro](https://img.shields.io/badge/Astro-7-BC52EE?logo=astro&logoColor=white)](https://astro.build)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
