@@ -1,12 +1,14 @@
 ---
 import '../styles/global.css';
 import { SITE } from '../config/site';
+import { ui, isPt, toPt, counterpart } from '../i18n/ui';
 
 interface Props {
   title?: string;
   description?: string;
   lang?: string;
   alternates?: { hreflang: string; path: string }[];
+  altHref?: string;
   noindex?: boolean;
 }
 
@@ -14,7 +16,8 @@ const {
   title = SITE.title,
   description = SITE.description,
   lang = 'en',
-  alternates = [],
+  alternates,
+  altHref,
   noindex = false,
 } = Astro.props;
 
@@ -24,16 +27,20 @@ const ogImage = new URL('/og.png', Astro.site).href;
 
 
 const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const pt = isPt(lang);
+const t = ui[pt ? 'pt' : 'en']; // translation object
+const home = pt ? '/pt' : '/';
+const enPath = pt ? counterpart(Astro.url.pathname, true) : trailing;
+const ptPath = pt ? trailing : counterpart(Astro.url.pathname, false);
 const nav = [
-  { href: '/', label: 'bio' },
-  { href: '/projects', label: 'projects' },
-  { href: '/services', label: 'services' },
-  { href: '/blog', label: 'blog' },
-  { href: '/stack', label: 'stack' },
-  { href: '/contact', label: 'contact' },
-];
+  { key: 'projects', href: '/projects' },
+  { key: 'services', href: '/services' },
+  { key: 'blog', href: '/blog' },
+  { key: 'stack', href: '/stack' },
+  { key: 'contact', href: '/contact' },
+] as const;
 const isCurrent = (href: string) =>
-  path === href || (href !== '/' && path.startsWith(href + '/'));
+  path === href || (href !== home && path.startsWith(href + '/'));
 ---
 
 <!doctype html>
@@ -64,9 +71,19 @@ const isCurrent = (href: string) =>
     ) : (
       <link rel="canonical" href={canonical} />
     )}
-    {alternates.map((a) => (
-      <link rel="alternate" hreflang={a.hreflang} href={new URL(a.path, Astro.site).href} />
-    ))}
+    {
+      !noindex &&
+        (Array.isArray(alternates) ? (
+          alternates.map((a) => (
+            <link rel="alternate" hreflang={a.hreflang} href={new URL(a.path, Astro.site).href} />
+          ))
+        ) : (
+          <>
+            <link rel="alternate" hreflang="en-US" href={new URL(enPath, Astro.site).href} />
+            <link rel="alternate" hreflang="pt-BR" href={new URL(ptPath, Astro.site).href} />
+          </>
+        ))
+    }
     <script is:inline>
       document.documentElement.classList.add('js');
       document.documentElement.dataset.theme = 'dark';
@@ -77,29 +94,42 @@ const isCurrent = (href: string) =>
       href="#content"
       class="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-10 focus:rounded-md focus:bg-ink focus:px-3 focus:py-2 focus:text-paper focus:font-bold"
     >
-      Skip to content
+      {t.skip}
     </a>
 
-    <header class="mx-auto w-full max-w-2xl px-5 pt-6">
+    <header class="mx-auto w-full max-w-2xl pt-6">
       <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
-        <a href="/" class="brand text-base font-bold tracking-tight" aria-label="Samuel Bernardo, Software Developer">
+        <a href={home} class="brand text-base font-bold tracking-tight" aria-label={`Samuel Bernardo, ${t.role}`}>
           <span class="track">
             <span>{SITE.name}</span>
-            <span class="role" aria-hidden="true">Software Developer</span>
+            <span class="role" aria-hidden="true">{t.role}</span>
           </span>
         </a>
         <nav aria-label="Main" class="flex items-baseline gap-4 text-[0.9rem]">
           {
-            nav.map((item) => (
-              <a
-                href={item.href}
-                aria-current={isCurrent(item.href) ? 'page' : undefined}
-                class:list={[isCurrent(item.href) ? 'font-bold' : 'text-soft']}
-              >
-                {item.label}
-              </a>
-            ))
+            nav.map((item) => {
+              const href = pt ? toPt(item.href) : item.href;
+              return (
+                <a
+                  href={href}
+                  aria-current={isCurrent(href) ? 'page' : undefined}
+                  class:list={[isCurrent(href) ? 'font-bold' : 'text-soft']}
+                >
+                  {t.nav[item.key]}
+                </a>
+              );
+            })
           }
+          <a
+            href={altHref ?? counterpart(Astro.url.pathname, pt)}
+            hreflang={pt ? 'en-US' : 'pt-BR'}
+            lang={pt ? 'en' : 'pt-BR'}
+            class="font-mono text-xs text-soft"
+          >
+          <span class:list={{ 'font-bold': pt }}>PT</span>{" "}/{" "}
+          <span class:list={{ 'font-bold': !pt }}>ENG</span>
+      
+          </a>
         </nav>
       </div>
     </header>
@@ -112,7 +142,7 @@ const isCurrent = (href: string) =>
       <div class="border-t border-line pt-5 font-mono text-xs text-soft">
         <p>© {new Date().getFullYear()} {SITE.name}</p>
         <p class="mt-1">
-          Made with <a class="underline-offset-2" href="https://astro.build">Astro</a>
+          {t.madeWith} <a class="underline-offset-2" href="https://astro.build">Astro</a>
         </p>
       </div>
     </footer>
