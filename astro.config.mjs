@@ -7,6 +7,12 @@ import tailwindcss from '@tailwindcss/vite';
 */
 const alternates = {};
 const pairs = {
+  'https://samb.fyi/': 'https://samb.fyi/pt/',
+  'https://samb.fyi/projects/': 'https://samb.fyi/pt/projects/',
+  'https://samb.fyi/services/': 'https://samb.fyi/pt/services/',
+  'https://samb.fyi/stack/': 'https://samb.fyi/pt/stack/',
+  'https://samb.fyi/contact/': 'https://samb.fyi/pt/contact/',
+  'https://samb.fyi/blog/': 'https://samb.fyi/pt/blog/',
   'https://samb.fyi/blog/data-mapper/': 'https://samb.fyi/pt/blog/data-mapper/',
   'https://samb.fyi/blog/fomo-ai/': 'https://samb.fyi/pt/blog/fomo-ai/',
 };
