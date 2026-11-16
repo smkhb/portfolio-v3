@@ -42,7 +42,7 @@ wrangler.jsonc           deploy no Cloudflare (assets estáticos)
 - O botão "PT" / "EN" no header leva à mesma página no outro idioma. Em posts sem tradução, leva ao índice do blog do outro idioma.
 - Os textos fixos da interface (nav, skip link, cargo no header, "Feito com" no rodapé) ficam em `src/i18n/ui.ts`, nos objetos `en` e `pt`.
 - Os itens do menu estão em `Base.astro` (array `nav`), com a chave de tradução em `ui.ts`. Para remover um item do menu, tire-o desse array.
-- Cada página tem `lang` no `<html>` (`en` ou `pt-BR`) e o layout monta os `hreflang` (en-US e pt-BR).
+- Cada página tem `lang` no `<html>` (`en` ou `pt-BR`) e o layout monta os `hreflang` (en-US, pt-BR e x-default, que aponta para a versão em inglês).
 
 ### Traduzir uma página nova
 
@@ -95,7 +95,7 @@ Título, descrição e tags dos projetos vêm da coleção compartilhada, então
 ## SEO
 
 - `site` definido em `astro.config.mjs`; sitemap via `@astrojs/sitemap`, com `xhtml:link` de alternates a partir do objeto `pairs`.
-- `Base.astro` cuida de canonical, hreflang, Open Graph e Twitter cards. Páginas sem par explícito recebem hreflang en-US e pt-BR automaticamente.
+- `Base.astro` cuida de canonical, hreflang, Open Graph e Twitter cards. Páginas sem par explícito recebem hreflang en-US, pt-BR e x-default automaticamente.
 - A 404 usa `noindex` e não emite hreflang.
 - `public/robots.txt` libera a indexação.
 

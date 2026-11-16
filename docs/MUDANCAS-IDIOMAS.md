@@ -54,8 +54,21 @@ Decisão tomada: inglês fica na raiz (`/...`) e português em `/pt/...` (opçã
 
 Não verificado: abrir as páginas em navegador; o fallback de post sem tradução (todos os posts atuais têm versão PT); as mudanças manuais feitas pelo usuário depois do build.
 
+## Ajustes de layout e SEO depois da implementação
+
+- **`src/layouts/Base.astro`**: o `<header>` ganhou `px-5`, o mesmo espaçamento lateral do `<main>`. No mobile, o `<nav>` ocupa a largura toda e centraliza os itens. Acima de `sm`, volta a alinhar à direita.
+- **`src/layouts/Base.astro`**: o link PT / ENG usa `basis-full` no mobile, então fica em uma terceira linha centralizada. Em `sm` para cima, volta para o fim da linha de links.
+- **`src/pages/pt/index.astro`**: título "Samuel Bernardo — Desenvolvedor de software" e descrição igual à tagline da home (antes eram "bio" e "Site pessoal de Samuel.").
+- **`astro.config.mjs`**: cada par do `pairs` agora gera também `x-default` apontando para a versão em inglês, além de en-US e pt-BR.
+- **`src/layouts/Base.astro`**: `x-default` emitido junto com en-US e pt-BR nas páginas sem alternates explícitos.
+- **`src/pages/blog/[slug].astro`** e **`src/pages/pt/blog/[slug].astro`**: o array `alternates` dos posts inclui `x-default`.
+
+Verificações: `pnpm build` concluiu com 17 páginas. Cada página HTML tem exatamente um `<link rel="alternate" hreflang="x-default">`, inclusive os posts. `dist/sitemap-0.xml` tem `x-default` em todas as 16 URLs. A 404 continua sem tags alternate.
+
+Não verificado: a aparência do nav e do seletor no navegador, em mobile e desktop.
+
 ## Pontos em aberto
 
 - Títulos, descrições e tags dos projetos continuam em inglês nas páginas PT. Para traduzir, seria preciso um campo extra no schema de `projects`.
 - Textos em português foram escritos a partir do inglês e precisam de revisão do autor.
-- Nada foi commitado. Todas as mudanças estão no working tree.
+- Mudanças de layout, título da home PT e `x-default` ficam em commits separados (ver histórico do git).
