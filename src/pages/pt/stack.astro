@@ -1,0 +1,44 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const stack = [
+  { name: 'TypeScript', use: 'Linguagem de programação principal. JavaScript com tipagem estática' },
+  { name: 'Node.js', use: 'Runtime de JavaScript no servidor' },
+  { name: 'Nest.js', use: 'Framework para construir aplicações escaláveis no servidor' },
+  { name: 'Astro', use: 'Sites estáticos e rápidos' },
+  { name: 'Next.js', use: 'Framework React para renderização no servidor e geração de sites estáticos' },
+  { name: 'Fastify', use: 'Framework web rápido e leve' },
+  { name: 'PostgreSQL', use: 'Sistema de gerenciamento de banco de dados relacional' },
+  { name: 'Zod', use: 'Validação e parsing com segurança de tipos' },
+  { name: 'React', use: 'Biblioteca JavaScript para construir interfaces de usuário' },
+  { name: 'Tailwind CSS', use: 'Framework CSS utility-first' },
+  { name: 'GitHub Actions', use: 'Automação de CI/CD' },
+  { name: 'Docker', use: 'Plataforma de conteinerização' },
+  { name: 'GitHub', use: 'Código e controle de versão' },
+  { name: 'Cloudflare', use: 'Hospedagem e DNS' },
+  { name: 'Figma', use: 'Design e protótipos' },
+];
+---
+
+<Base lang="pt-BR" title="Stack — Samuel Bernardo" description="As ferramentas que uso todos os dias.">
+  <header class="rise pt-16 pb-10">
+    <h1 class="text-[clamp(2rem,5.5vw,2.8rem)] font-bold tracking-tight">Stack</h1>
+    <p class="rise rise-2 mt-4 max-w-[58ch] text-soft">
+      As ferramentas que uso todos os dias para construir coisas para a web.
+    </p>
+  </header>
+
+  <ul class="border-t border-dashed border-line pb-4">
+    {
+      stack.map((tool, i) => (
+        <li
+          class="reveal flex items-baseline justify-between gap-6 border-b border-dashed border-line py-5"
+          style={`--delay: ${Math.min(i * 0.06, 0.3)}s`}
+        >
+          <span class="font-bold tracking-tight">{tool.name}</span>
+          <span class="text-right text-sm text-soft">{tool.use}</span>
+        </li>
+      ))
+    }
+  </ul>
+</Base>

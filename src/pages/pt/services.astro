@@ -1,0 +1,55 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SITE } from '../../config/site';
+
+const services = [
+  {
+    title: 'Sites e landing pages',
+    description:
+      'Do layout ao deploy: páginas rápidas, estáticas e fáceis de manter, feitas com Astro. Uma boa primeira pergunta: quem vai editar este site depois?',
+  },
+  {
+    title: 'Aplicações web e sistemas',
+    description:
+      'Aplicações feitas com Next.js, TypeScript e a ferramenta certa para o problema, sem excesso na stack.',
+  },
+  {
+    title: 'Manutenção e consultoria',
+    description:
+      'Correções, melhorias e revisão técnica para sites e projetos existentes que precisam de cuidado contínuo.',
+  },
+];
+---
+
+<Base lang="pt-BR" title="Serviços — Samuel Bernardo" description="Como posso ajudar: sites, aplicações web, manutenção e consultoria.">
+  <header class="rise pt-16 pb-10">
+    <h1 class="text-[clamp(2.2rem,6vw,3.2rem)] font-bold leading-tight tracking-tight">Serviços</h1>
+    <p class="rise rise-2 mt-4 max-w-[58ch] leading-relaxed text-soft">
+      Os tipos de trabalho que costumo assumir. Se o seu caso não se encaixa em nenhum deles,
+      me mande uma mensagem mesmo assim e conversamos.
+    </p>
+  </header>
+
+  <ul class="border-t border-line">
+    {
+      services.map((s, i) => (
+        <li
+          class="reveal border-b border-line py-7"
+          style={`--delay: ${Math.min(i * 0.07, 0.21)}s`}
+        >
+          <h2 class="text-xl font-bold tracking-tight">{s.title}</h2>
+          <p class="mt-2 leading-relaxed text-soft">{s.description}</p>
+        </li>
+      ))
+    }
+  </ul>
+
+  <section class="reveal mt-10 rounded-lg border border-line p-6" style="--delay: 0.28s">
+    <h2 class="font-bold tracking-tight">Como começar</h2>
+    <p class="mt-2 leading-relaxed text-soft">
+      Me escreva em{" "}
+      <a class="underline underline-offset-[3px]" href={`mailto:${SITE.email}`}>{SITE.email}</a>
+      {" "}com uma descrição do que você precisa. Respondo com perguntas, um prazo e um preço.
+    </p>
+  </section>
+</Base>
