@@ -16,7 +16,7 @@ const translation = await getEntry('blogPt', post.id);
 
 <Base 
 title={`${post.data.title} — Samuel Bernardo`} 
-description={post.data.description} alternates={translation ? [
+description={post.data.description} altHref={translation ? `/pt/blog/${post.id}/` : '/pt/blog/'} alternates={translation ? [
   { hreflang: 'en-US', path: `/blog/${post.id}/` },
   { hreflang: 'pt-BR', path: `/pt/blog/${post.id}/` },
   ] : []}
