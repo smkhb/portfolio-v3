@@ -11,7 +11,7 @@ const posts = (await getCollection('blogPt', ({ data }) => !data.draft))
 const projects = (await getCollection('projects')).sort((a, b) => b.data.year - a.data.year).slice(0, 2);
 ---
 
-<Base lang="pt-BR" title="Samuel Bernardo — bio" description="Site pessoal de Samuel.">
+<Base lang="pt-BR" title="Samuel Bernardo — Desenvolvedor de software" description="Desenvolvedor de software. Transformo ideias e problemas em soluções digitais, do primeiro código ao deploy.">
   <section class="pt-14 pb-10">
     <button
       type="button"
