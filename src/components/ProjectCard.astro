@@ -5,10 +5,12 @@ interface Props {
   project: CollectionEntry<'projects'>;
   index: number;
   tag?: 'h2' | 'h3';
+  lang?: string;
 }
 
-const { project, index, tag = 'h3' } = Astro.props;
+const { project, index, tag = 'h3', lang = 'en' } = Astro.props;
 const { title, description, url, repo, year, tags } = project.data;
+const codeLabel = lang.startsWith('pt') ? 'código' : 'code';
 
 const hues = [235, 190, 330, 25, 265, 155];
 const h = hues[index % hues.length];
@@ -38,7 +40,7 @@ const Tag = tag;
     {
       repo && (
         <a href={repo} class="ml-auto" target="_blank" rel="noopener noreferrer">
-          code
+          {codeLabel}
         </a>
       )
     }
