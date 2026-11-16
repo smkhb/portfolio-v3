@@ -24,6 +24,8 @@ import { SITE } from '../config/site';
         id="copy"
         type="button"
         data-email={SITE.email}
+        data-copy="Copy email"
+        data-copied="Copied!"
         class="cursor-pointer rounded-md border border-line px-3 py-1.5 font-mono text-xs transition-colors hover:border-accent hover:text-accent"
       >
         Copy email
@@ -52,8 +54,10 @@ import { SITE } from '../config/site';
   const button = document.getElementById('copy');
   button?.addEventListener('click', async () => {
     const email = button.getAttribute('data-email') ?? '';
+    const copyLabel = button.getAttribute('data-copy') ?? '';
+    const copiedLabel = button.getAttribute('data-copied') ?? '';
     await navigator.clipboard.writeText(email);
-    button.textContent = 'Copied!';
-    setTimeout(() => (button.textContent = 'Copy email'), 2000);
+    button.textContent = copiedLabel;
+    setTimeout(() => (button.textContent = copyLabel), 2000);
   });
 </script>
