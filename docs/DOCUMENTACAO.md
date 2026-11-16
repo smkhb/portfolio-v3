@@ -59,6 +59,7 @@ wrangler.jsonc           deploy no Cloudflare (assets estáticos)
 | Itens e rótulos do menu | `src/layouts/Base.astro` (array `nav`) e `src/i18n/ui.ts` |
 | Textos fixos da interface | `src/i18n/ui.ts` |
 | Bio da home | `src/pages/index.astro` (EN) e `src/pages/pt/index.astro` (PT) |
+| Botão de contato da home | `src/pages/index.astro` (EN) e `src/pages/pt/index.astro` (PT), dentro da seção de introdução |
 | Serviços | `src/pages/services.astro` e `src/pages/pt/services.astro` |
 | Ferramentas (Stack) | `src/pages/stack.astro` e `src/pages/pt/stack.astro` |
 | Cores e fonte | `src/styles/global.css` (variáveis em `:root`) |
