@@ -1,0 +1,96 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+import { longDate } from '../../lib/dates';
+
+const posts = (await getCollection('blogPt', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+
+const projects = (await getCollection('projects')).sort((a, b) => b.data.year - a.data.year).slice(0, 2);
+---
+
+<Base lang="pt-BR" title="Samuel Bernardo — bio" description="Site pessoal de Samuel.">
+  <section class="pt-14 pb-10">
+    <button
+      type="button"
+      class="coin-wrap rise cursor-pointer rounded-full"
+      aria-label="Foto de perfil de Samuel Bernardo"
+    >
+      <span class="coin">
+        <img
+          src="/profile.jpeg"
+          alt="Foto de perfil de Samuel Bernardo"
+          width="112"
+          height="112"
+          class="face object-cover ring-1 ring-line"
+        />
+        <span class="face back" aria-hidden="true"></span>
+      </span>
+    </button>
+    <h1 class="rise rise-2 mt-7 text-[clamp(1.9rem,6vw,3rem)] leading-tight font-bold tracking-tight">
+      Samuel Bernardo
+    </h1>
+    <p class="rise rise-3 mt-4 max-w-[58ch] text-[1.05rem] text-soft italic">
+      Desenvolvedor de software. Construo coisas que funcionam, da primeira linha de código ao deploy.
+    </p>
+  </section>
+
+  <section class="space-y-5 text-[1.05rem]">
+    <div class="rise rise-3">
+      <p>
+        Prazer, sou o Sam. Trabalho na web e gosto de resolver problemas: código direto, fácil de manter, sem enrolação.
+      </p>
+      <p class="mt-4">
+        Aqui é o lugar onde você encontra informações sobre mim e meu trabalho. Aqui mostro{" "}
+        <a href="/pt/projects">o que já construí</a>,{" "}
+        <a href="/pt/services">como posso ajudar</a> e{" "}
+        <a href="/pt/blog">o que tenho escrito</a>.
+      </p>
+      <p class="mt-4">
+        Sobre mim: gosto de ler ficção, filosofia e literatura clássica. Também gosto de assistir La Liga, NBA, animes e filmes.
+      </p>
+    </div>
+  </section>
+
+  <section class="mt-16">
+    <h2 class="text-xl font-bold tracking-tight">Projetos</h2>
+    <ul class="mt-6 space-y-5">
+      {projects.map((p, i) => <ProjectCard project={p} index={i} lang="pt-BR" />)}
+    </ul>
+    <p class="mt-5 font-mono text-xs">
+      <a href="/pt/projects">ver todos os projetos</a>
+    </p>
+  </section>
+
+  <section class="mt-16 pb-8">
+    <h2 class="text-xl font-bold tracking-tight">Posts recentes</h2>
+    <ul class="mt-6 divide-y divide-line border-y border-line">
+      {
+        posts.map((post) => (
+          <li class="py-4">
+            <span class="font-mono text-xs text-soft">{longDate(post.data.pubDate, 'pt-BR')}</span>
+            <a href={`/pt/blog/${post.id}`} class="mt-1 block w-fit font-bold tracking-tight">
+              {post.data.title}
+            </a>
+            <span class="mt-1 block text-sm text-soft">{post.data.description}</span>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="mt-5 font-mono text-xs">
+      <a href="/pt/blog">ver todos os posts</a>
+    </p>
+  </section>
+</Base>
+
+<script>
+  const botao = document.querySelector('.coin-wrap');
+  const coin = botao?.querySelector('.coin');
+  botao?.addEventListener('click', () => {
+    coin?.classList.remove('spinning');
+    coin?.classList.add('spinning');
+  });
+  coin?.addEventListener('animationend', () => coin.classList.remove('spinning'));
+</script>
