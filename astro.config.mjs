@@ -20,6 +20,7 @@ for (const [en, pt] of Object.entries(pairs)) {
   const links = [
     { lang: 'en-US', url: en },
     { lang: 'pt-BR', url: pt },
+    { lang: 'x-default', url: en },
   ];
   alternates[en] = links;
   alternates[pt] = links;

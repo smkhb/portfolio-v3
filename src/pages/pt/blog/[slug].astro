@@ -22,6 +22,7 @@ const translation = await getEntry('blog', post.id);
   alternates={translation ? [
     { hreflang: 'en-US', path: `/blog/${post.id}/` },
     { hreflang: 'pt-BR', path: `/pt/blog/${post.id}/` },
+    { hreflang: 'x-default', path: `/blog/${post.id}/` },
   ] : []}
 >
   <article class="pt-16 pb-10">
