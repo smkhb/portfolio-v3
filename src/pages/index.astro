@@ -11,7 +11,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 const projects = (await getCollection('projects')).sort((a, b) => b.data.year - a.data.year).slice(0, 2);
 ---
 
-<Base title="Samuel Bernardo — bio">
+<Base title="Samuel Bernardo — Home">
   <section class="pt-14 pb-10">
     <button
       type="button"
